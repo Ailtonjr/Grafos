@@ -7,9 +7,9 @@ import java.util.List;
 
 
 public class Vertice {
-    int id;
-    String rotulo;
-    boolean visitado = false;
+    public int id;
+    public String rotulo;
+    public boolean visitado = false;
     public List<Arco> arcos;
 
     public Vertice(String rotulo, int id) {

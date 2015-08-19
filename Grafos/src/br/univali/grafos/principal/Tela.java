@@ -1,5 +1,7 @@
 package br.univali.grafos.principal;
 
+import br.univali.grafos.modelo.DFS;
+
 
 public class Tela extends javax.swing.JFrame {
 
@@ -74,7 +76,7 @@ public class Tela extends javax.swing.JFrame {
     private void buttonGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGrafoActionPerformed
         
         //meuGrafo.lerVertices();
-        for (Vertice vertice : meuGrafo.vertices) {
+       /* for (Vertice vertice : meuGrafo.vertices) {
             System.out.println("");
             System.out.println("------Vertice------");
             System.out.println("Rotulo: " + vertice.rotulo);
@@ -84,11 +86,13 @@ public class Tela extends javax.swing.JFrame {
             for (Arco arco : vertice.arcos) {
                 System.out.println("");
                 System.out.println("------Arco------");
-                System.out.println("Vertice A: " + arco.verticeA);
-                System.out.println("Vertice B: " + arco.verticeB);
+                System.out.println("Vertice A: " + arco.verticeA.rotulo);
+                System.out.println("Vertice B: " + arco.verticeB.rotulo);
                 System.out.println("Peso: " + arco.peso);
             }
-        }
+        }*/
+        DFS dfs = new DFS();
+        dfs.percorrer(meuGrafo, "");
 
 
     }//GEN-LAST:event_buttonGrafoActionPerformed

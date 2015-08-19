@@ -17,7 +17,8 @@ public class MeuGrafo {
     }
 
     void adicionarArco(int idVertice1, int idVertice2, double peso) {
-        vertices.get(idVertice1).arcos.add(new Arco(idVertice1, idVertice2, peso));
+        
+        vertices.get(idVertice1).arcos.add(new Arco(vertices.get(idVertice1), vertices.get(idVertice2), peso));
     }
     
     void lerVertices(){
