@@ -76,12 +76,13 @@ public class Tela extends javax.swing.JFrame {
     private void buttonGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGrafoActionPerformed
         
         //meuGrafo.lerVertices();
-       /* for (Vertice vertice : meuGrafo.vertices) {
+      /* for (Vertice vertice : meuGrafo.vertices) {
             System.out.println("");
             System.out.println("------Vertice------");
             System.out.println("Rotulo: " + vertice.rotulo);
             System.out.println("ID: " + vertice.id);
             System.out.println("Visitado: " + vertice.visitado);
+            System.out.println("tamanho da lista" + vertice.arcos.size());
 
             for (Arco arco : vertice.arcos) {
                 System.out.println("");

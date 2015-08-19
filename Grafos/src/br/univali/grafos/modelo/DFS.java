@@ -20,9 +20,10 @@ public class DFS {
             if(!pilha.firstElement().arcos.isEmpty()){
                 for (Arco arco : pilha.firstElement().arcos) {
                     if(arco.verticeB.visitado != true && cont != 0){
-                        cont--;
                         System.out.println("cont " + cont);
+                        cont--;
                         System.out.println("Empilhou " + arco.verticeB.rotulo);
+                        arco.verticeB.visitado = true;
                         pilha.push(arco.verticeB);
                         break;
                     }else{
