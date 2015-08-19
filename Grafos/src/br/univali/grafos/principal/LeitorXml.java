@@ -1,7 +1,8 @@
+package br.univali.grafos.principal;
+
 
 
 import java.io.*;
-import javax.swing.JDialog;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -31,8 +32,6 @@ public class LeitorXml {
     public LeitorXml() {
         grafo = new MeuGrafo();
     }
-    
-    
     
     public static Object grafoFromXML() {
         //Referencie a classe do seu grafo aqui, exemplo:
