@@ -14,19 +14,27 @@ public class DFS {
         pilha.lastElement().visitado = true;
         System.out.println("Empilhou " + pilha.lastElement().rotulo);
         while (!pilha.empty()) {
-            int cont = pilha.lastElement().arcos.size();
             if (!pilha.lastElement().arcos.isEmpty()) {
                 for (Arco arco : pilha.lastElement().arcos) {
-                    if (!arco.verticeB.visitado && cont != 0) {
-                        System.out.println("cont " + cont);
-                        cont--;
+                    if (!arco.verticeB.visitado) {
                         System.out.println("Empilhou " + arco.verticeB.rotulo);
                         pilha.push(arco.verticeB);
                         arco.verticeB.visitado = true;
                         break;
                     } else {
-                        System.out.println("Desempilhou " + pilha.lastElement().rotulo);
-                        pilha.pop();
+                        int cont = 0;
+                        if (pilha.size() > 0) {
+                            cont = pilha.lastElement().arcos.size();
+                            for (Arco arco1 : pilha.lastElement().arcos) {
+                                if (arco1.verticeB.visitado) {
+                                    cont--;
+                                    if (cont == 0) {
+                                        System.out.println("Desempilhou " + pilha.lastElement().rotulo);
+                                        pilha.pop();
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
             } else {
