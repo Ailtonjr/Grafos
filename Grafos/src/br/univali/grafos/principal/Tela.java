@@ -1,6 +1,7 @@
 package br.univali.grafos.principal;
 
 import br.univali.grafos.modelo.DFS;
+import javax.swing.JOptionPane;
 
 
 public class Tela extends javax.swing.JFrame {
@@ -21,44 +22,80 @@ public class Tela extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonXML = new javax.swing.JButton();
-        buttonGrafo = new javax.swing.JButton();
+        buttonDFS = new javax.swing.JButton();
+        buttonBFS = new javax.swing.JButton();
+        textField_rotulo = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
-        buttonXML.setText("Ler Arquivo");
+        buttonXML.setText("Arquivo");
         buttonXML.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 buttonXMLActionPerformed(evt);
             }
         });
 
-        buttonGrafo.setText("Ler Grafo");
-        buttonGrafo.setEnabled(false);
-        buttonGrafo.addActionListener(new java.awt.event.ActionListener() {
+        buttonDFS.setText("DFS");
+        buttonDFS.setEnabled(false);
+        buttonDFS.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                buttonGrafoActionPerformed(evt);
+                buttonDFSActionPerformed(evt);
             }
         });
+
+        buttonBFS.setText("BFS");
+        buttonBFS.setEnabled(false);
+        buttonBFS.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                buttonBFSActionPerformed(evt);
+            }
+        });
+
+        textField_rotulo.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                textField_rotuloActionPerformed(evt);
+            }
+        });
+
+        jLabel1.setText("Digite o rotulo a ser buscado");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(303, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addComponent(buttonXML, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(buttonGrafo, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addContainerGap())
+            .addGroup(layout.createSequentialGroup()
+                .addGap(50, 50, 50)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel1)
+                        .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(layout.createSequentialGroup()
+                                .addGap(0, 0, Short.MAX_VALUE)
+                                .addComponent(buttonXML))
+                            .addComponent(textField_rotulo)
+                            .addGroup(layout.createSequentialGroup()
+                                .addComponent(buttonDFS, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                .addComponent(buttonBFS, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGap(50, 50, 50))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(24, 24, 24)
                 .addComponent(buttonXML)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(buttonGrafo)
-                .addContainerGap(224, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel1)
+                .addGap(9, 9, 9)
+                .addComponent(textField_rotulo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(buttonDFS)
+                    .addComponent(buttonBFS))
+                .addContainerGap(59, Short.MAX_VALUE))
         );
 
         pack();
@@ -69,34 +106,25 @@ public class Tela extends javax.swing.JFrame {
         LeitorXml leitorXml = new LeitorXml();
         meuGrafo = (MeuGrafo) leitorXml.grafoFromXML();
         if (meuGrafo != null) {
-            buttonGrafo.setEnabled(true);
+            buttonDFS.setEnabled(true);
+            buttonBFS.setEnabled(true);
         }
     }//GEN-LAST:event_buttonXMLActionPerformed
 
-    private void buttonGrafoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonGrafoActionPerformed
+    
+    
+    private void buttonDFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDFSActionPerformed
+    DFS dfs = new DFS();
+    dfs.busca(meuGrafo, textField_rotulo.getText());
+    }//GEN-LAST:event_buttonDFSActionPerformed
+
+    private void buttonBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBFSActionPerformed
         
-        //meuGrafo.lerVertices();
-      /* for (Vertice vertice : meuGrafo.vertices) {
-            System.out.println("");
-            System.out.println("------Vertice------");
-            System.out.println("Rotulo: " + vertice.rotulo);
-            System.out.println("ID: " + vertice.id);
-            System.out.println("Visitado: " + vertice.visitado);
-            System.out.println("tamanho da lista" + vertice.arcos.size());
+    }//GEN-LAST:event_buttonBFSActionPerformed
 
-            for (Arco arco : vertice.arcos) {
-                System.out.println("");
-                System.out.println("------Arco------");
-                System.out.println("Vertice A: " + arco.verticeA.rotulo);
-                System.out.println("Vertice B: " + arco.verticeB.rotulo);
-                System.out.println("Peso: " + arco.peso);
-            }
-        }*/
-        DFS dfs = new DFS();
-        dfs.busca(meuGrafo, "");
-
-
-    }//GEN-LAST:event_buttonGrafoActionPerformed
+    private void textField_rotuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField_rotuloActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_textField_rotuloActionPerformed
 
     /**
      * @param args the command line arguments
@@ -111,7 +139,10 @@ public class Tela extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton buttonGrafo;
+    private javax.swing.JButton buttonBFS;
+    private javax.swing.JButton buttonDFS;
     private javax.swing.JButton buttonXML;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField textField_rotulo;
     // End of variables declaration//GEN-END:variables
 }

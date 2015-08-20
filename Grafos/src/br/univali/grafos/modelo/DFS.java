@@ -10,13 +10,18 @@ public class DFS {
     Stack<Vertice> pilha = new Stack<>();
 
     public void busca(MeuGrafo grafo, String rotulo){
+        int cont = 0;
         for (Vertice vertice : grafo.vertices) {
             if(!vertice.visitado){
+                cont++;
                 System.out.println("--------------");
                 pilha.push(vertice);
                 pilha.lastElement().visitado = true;
                 percorrer(rotulo);
             }
+        }
+        if(cont > 1){
+            System.out.println("Não é conexo!");
         }
     }
     public void percorrer(String rotulo) {
