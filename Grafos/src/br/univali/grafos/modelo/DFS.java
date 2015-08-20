@@ -9,9 +9,17 @@ public class DFS {
 
     Stack<Vertice> pilha = new Stack<>();
 
-    public void percorrer(MeuGrafo grafo, String rotulo) {
-        pilha.push(grafo.vertices.get(0));
-        pilha.lastElement().visitado = true;
+    public void busca(MeuGrafo grafo, String rotulo){
+        for (Vertice vertice : grafo.vertices) {
+            if(!vertice.visitado){
+                System.out.println("--------------");
+                pilha.push(vertice);
+                pilha.lastElement().visitado = true;
+                percorrer(rotulo);
+            }
+        }
+    }
+    public void percorrer(String rotulo) {
         System.out.println("Empilhou " + pilha.lastElement().rotulo);
         while (!pilha.empty()) {
             if (!pilha.lastElement().arcos.isEmpty()) {
@@ -42,6 +50,6 @@ public class DFS {
                 pilha.pop();
             }
         }
-        System.out.println("fim ciclo");
+        System.out.println("fim do 1º ciclo");
     }
 }

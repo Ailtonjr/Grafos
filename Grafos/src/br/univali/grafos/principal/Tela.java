@@ -93,7 +93,7 @@ public class Tela extends javax.swing.JFrame {
             }
         }*/
         DFS dfs = new DFS();
-        dfs.percorrer(meuGrafo, "");
+        dfs.busca(meuGrafo, "");
 
 
     }//GEN-LAST:event_buttonGrafoActionPerformed
