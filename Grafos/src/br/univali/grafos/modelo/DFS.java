@@ -3,12 +3,14 @@ package br.univali.grafos.modelo;
 import br.univali.grafos.principal.Arco;
 import br.univali.grafos.principal.MeuGrafo;
 import br.univali.grafos.principal.Vertice;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Stack;
 
 public class DFS {
 
     Stack<Vertice> pilha = new Stack<>();
-    Stack<Vertice> pilhaRetorno = new Stack<>();
+    public List<String> caminhaRetorno = new ArrayList<>();
 
     public void busca(MeuGrafo grafo, String rotulo){
         int cont = 0;
@@ -24,9 +26,9 @@ public class DFS {
         if(cont > 1){
             System.out.println("Não é conexo!");
         }
-        System.err.println("tamanho pilha retorno "+ pilhaRetorno.size());
-        for (Vertice pilhaRetorno : pilhaRetorno) {
-            System.out.println("Retorno ---------------------------------- " + pilhaRetorno.rotulo);
+        System.err.println("tamanho pilha retorno "+ caminhaRetorno.size());
+        for (String retorno : caminhaRetorno) {
+            System.err.println("Retorno ---------------------------------- " + retorno);
         }
     }
     public void percorrer(String rotulo) {
@@ -39,8 +41,8 @@ public class DFS {
                         System.out.println("Empilhou " + arco.verticeB.rotulo);
                         pilha.push(arco.verticeB);
                         if(pilha.lastElement().rotulo.equals(rotulo) ){
-                            for (Vertice pilha1 : pilha) {
-                                System.err.println(pilha1.rotulo);
+                            for (Vertice pilhaOriginal : pilha) {
+                                caminhaRetorno.add(pilhaOriginal.rotulo);
                             }
                         }
                         arco.verticeB.visitado = true;

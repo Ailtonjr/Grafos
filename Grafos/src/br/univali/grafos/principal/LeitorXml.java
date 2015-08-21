@@ -34,8 +34,6 @@ public class LeitorXml {
     }
     
     public static Object grafoFromXML() {
-        //Referencie a classe do seu grafo aqui, exemplo:
-        //OutroTipoDeGrafo grafo2
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Arquivo XML", "xml");
@@ -49,7 +47,6 @@ public class LeitorXml {
                 Document doc = dBuilder.parse(file);
                 doc.getDocumentElement().normalize();
                 NodeList nodes = doc.getElementsByTagName("Vertice");
-                //System.out.println("-Vertices");
                 for (int i = 0; i < nodes.getLength(); i++) {
                     Node node = nodes.item(i);
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -58,17 +55,10 @@ public class LeitorXml {
                         String rotulo = element.getAttribute("rotulo");
                         int posX = Integer.parseInt(element.getAttribute("posX"));
                         int posY = Integer.parseInt(element.getAttribute("posY"));
-                        //Adicione os vértices ao seu grafo aqui, exemplo:
                         grafo.adicionarVertice( rotulo, relId);
-                        //grafo2.addVertice(rotulo, relId);
-                        //System.out.println("relId: " + relId);
-                        //System.out.println("rotulo: " + rotulo);
-                        //System.out.println("posicao: " + posX + ", " + posY);
                     }
-                    //System.out.println();
                 }
                 nodes = doc.getElementsByTagName("Aresta");
-                //System.out.println("-Arestas");
                 for (int i = 0; i < nodes.getLength(); i++) {
                     Node node = nodes.item(i);
                     if (node.getNodeType() == Node.ELEMENT_NODE) {
@@ -76,19 +66,11 @@ public class LeitorXml {
                         int idVertice1 = Integer.parseInt(element.getAttribute("idVertice1"));
                         int idVertice2 = Integer.parseInt(element.getAttribute("idVertice2"));
                         double peso = Double.parseDouble(element.getAttribute("peso"));
-                        //Adicione as arestas ao seu grafo aqui, exemplo:
                         grafo.adicionarArco(idVertice1, idVertice2, peso);
-                        //grafo2.addAresta(idVertice1, idVertice2);
-                        //System.out.println("idVertice1: " + idVertice1);
-                        //System.out.println("idVertice2: " + idVertice2);
-                        //System.out.println("peso: " + peso);
                     }
-                    //System.out.println();
                 }
-                //retorne o seu grafo criado
-                System.out.println("Leitura Completa");
+                System.out.println("Leitura do XML Completa");
                 return grafo; 
-                //return grafo2
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, "Erro na Leitura, Remova os comentários do XML ou escolha outro arquivo");
                 System.err.println(ex);

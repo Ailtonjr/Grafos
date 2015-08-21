@@ -1,12 +1,15 @@
 package br.univali.grafos.principal;
 
 import br.univali.grafos.modelo.DFS;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.JOptionPane;
 
 
 public class Tela extends javax.swing.JFrame {
 
     MeuGrafo meuGrafo = null;
+    MeuGrafo backupGrafo = null;
 
     public Tela() {
         initComponents();
@@ -52,6 +55,7 @@ public class Tela extends javax.swing.JFrame {
             }
         });
 
+        textField_rotulo.setEnabled(false);
         textField_rotulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField_rotuloActionPerformed(evt);
@@ -108,14 +112,18 @@ public class Tela extends javax.swing.JFrame {
         if (meuGrafo != null) {
             buttonDFS.setEnabled(true);
             buttonBFS.setEnabled(true);
+            textField_rotulo.setEnabled(true);
         }
     }//GEN-LAST:event_buttonXMLActionPerformed
 
     
-    
     private void buttonDFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDFSActionPerformed
     DFS dfs = new DFS();
     dfs.busca(meuGrafo, textField_rotulo.getText());
+    buttonDFS.setEnabled(false);
+    buttonBFS.setEnabled(false);
+    textField_rotulo.setEnabled(false);
+    textField_rotulo.setText("");
     }//GEN-LAST:event_buttonDFSActionPerformed
 
     private void buttonBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBFSActionPerformed
