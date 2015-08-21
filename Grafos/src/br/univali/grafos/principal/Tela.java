@@ -1,10 +1,7 @@
 package br.univali.grafos.principal;
 
+import br.univali.grafos.modelo.BFS;
 import br.univali.grafos.modelo.DFS;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.swing.JOptionPane;
-
 
 public class Tela extends javax.swing.JFrame {
 
@@ -29,8 +26,14 @@ public class Tela extends javax.swing.JFrame {
         buttonBFS = new javax.swing.JButton();
         textField_rotulo = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        texto = new javax.swing.JTextArea();
+        jLabel2 = new javax.swing.JLabel();
+        conexo = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setTitle("Trabalho de Grafos");
+        setResizable(false);
 
         buttonXML.setText("Arquivo");
         buttonXML.addActionListener(new java.awt.event.ActionListener() {
@@ -64,27 +67,40 @@ public class Tela extends javax.swing.JFrame {
 
         jLabel1.setText("Digite o rotulo a ser buscado");
 
+        texto.setEditable(false);
+        texto.setColumns(20);
+        texto.setRows(5);
+        texto.setText(" ");
+        jScrollPane1.setViewportView(texto);
+
+        jLabel2.setText("Caminho");
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addGap(50, 50, 50)
+                .addGap(70, 70, 70)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(layout.createSequentialGroup()
                         .addComponent(jLabel1)
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(jLabel2)
+                        .addGap(0, 0, Short.MAX_VALUE))
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addComponent(conexo, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(jScrollPane1, javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(layout.createSequentialGroup()
                                 .addGap(0, 0, Short.MAX_VALUE)
                                 .addComponent(buttonXML))
                             .addComponent(textField_rotulo)
                             .addGroup(layout.createSequentialGroup()
                                 .addComponent(buttonDFS, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 26, Short.MAX_VALUE)
                                 .addComponent(buttonBFS, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(50, 50, 50))))
+                        .addGap(70, 70, 70))))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -99,7 +115,13 @@ public class Tela extends javax.swing.JFrame {
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(buttonDFS)
                     .addComponent(buttonBFS))
-                .addContainerGap(59, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addComponent(jLabel2)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(conexo, javax.swing.GroupLayout.PREFERRED_SIZE, 20, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(30, 30, 30))
         );
 
         pack();
@@ -113,21 +135,32 @@ public class Tela extends javax.swing.JFrame {
             buttonDFS.setEnabled(true);
             buttonBFS.setEnabled(true);
             textField_rotulo.setEnabled(true);
+            texto.setText("");
+            conexo.setText("");
         }
     }//GEN-LAST:event_buttonXMLActionPerformed
 
-    
+
     private void buttonDFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonDFSActionPerformed
-    DFS dfs = new DFS();
-    dfs.busca(meuGrafo, textField_rotulo.getText());
-    buttonDFS.setEnabled(false);
-    buttonBFS.setEnabled(false);
-    textField_rotulo.setEnabled(false);
-    textField_rotulo.setText("");
+        DFS dfs = new DFS();
+        dfs.busca(meuGrafo, textField_rotulo.getText());
+        buttonDFS.setEnabled(false);
+        buttonBFS.setEnabled(false);
+        textField_rotulo.setEnabled(false);
+        textField_rotulo.setText("");
+        texto.setText(dfs.retorno);
+        conexo.setText(dfs.conexo);
     }//GEN-LAST:event_buttonDFSActionPerformed
 
     private void buttonBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBFSActionPerformed
-        
+        BFS bfs = new BFS();
+        bfs.busca(meuGrafo, textField_rotulo.getText());
+        buttonDFS.setEnabled(false);
+        buttonBFS.setEnabled(false);
+        textField_rotulo.setEnabled(false);
+        textField_rotulo.setText("");
+        texto.setText(bfs.retorno);
+        conexo.setText(bfs.conexo);
     }//GEN-LAST:event_buttonBFSActionPerformed
 
     private void textField_rotuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField_rotuloActionPerformed
@@ -150,7 +183,11 @@ public class Tela extends javax.swing.JFrame {
     private javax.swing.JButton buttonBFS;
     private javax.swing.JButton buttonDFS;
     private javax.swing.JButton buttonXML;
+    private javax.swing.JLabel conexo;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
+    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTextField textField_rotulo;
+    public static javax.swing.JTextArea texto;
     // End of variables declaration//GEN-END:variables
 }
