@@ -19,45 +19,61 @@ public class BFS {
 
     Queue<Vertice> fila = new LinkedList();
     public String retorno = "Não Econtrado.";
-    public String conexo = "Conexo";
-    
-    public void busca(MeuGrafo grafo, String rotulo){
+    public String conexoTexto = "Conexo";
+    boolean conexao = true;
+
+    public void busca(MeuGrafo grafo, String rotulo) {
         int cont = 0;
         for (Vertice vertice : grafo.vertices) {
-            if(!vertice.visitado){
+            if (!vertice.visitado) {
                 cont++;
                 System.out.println("--------------");
                 fila.add(vertice);
                 fila.element().visitado = true;
                 System.out.println("elemento é: " + grafo.vertices.get(0).visitado);
                 percorrer(rotulo);
-                
+
             }
         }
-        if(cont > 1){
+        if (cont > 1 || verificaConexao(grafo)) {
             System.out.println("Não é conexo!");
-            conexo = "Não Conexo";
+            conexoTexto = "Não Conexo";
         }
-       // return retorno;
+    }
+
+    private boolean verificaConexao(MeuGrafo grafo) {
+        int cont = 0;
+        for (Vertice vertice : grafo.vertices) {
+            for (Arco arco : grafo.todosArcos) {
+                if (vertice.id == arco.origem.id) {
+                    cont++;
+                }
+            }
+            if (cont == 0) {
+                System.err.println("nao é");
+                return true;
+            }
+        }
+        return false;
     }
 
     private void percorrer(String rotulo) {
         System.out.println("Enfileirou " + fila.element().rotulo);
-        while (!fila.isEmpty()) {   
-            if(!fila.element().arcos.isEmpty()){
+        while (!fila.isEmpty()) {
+            if (!fila.element().arcos.isEmpty()) {
                 for (Arco arco : fila.element().arcos) {
-                    if(!arco.verticeB.visitado){
-                        if(arco.verticeB.rotulo.equalsIgnoreCase(rotulo)){
+                    if (!arco.destino.visitado) {
+                        if (arco.destino.rotulo.equalsIgnoreCase(rotulo)) {
                             retorno = "O Vertice com o rótulo expecificado \nestá no Grafo.";
                         }
-                        arco.verticeB.visitado = true;
-                        fila.add(arco.verticeB);
-                        System.out.println("Enfileirou " + arco.verticeB.rotulo);
+                        arco.destino.visitado = true;
+                        fila.add(arco.destino);
+                        System.out.println("Enfileirou " + arco.destino.rotulo);
                     }
                 }
                 System.out.println("remove " + fila.element().rotulo);
                 fila.remove();
-            }else{
+            } else {
                 System.out.println("Remove 2: " + fila.element().rotulo);
                 fila.element().visitado = true;
                 fila.remove();

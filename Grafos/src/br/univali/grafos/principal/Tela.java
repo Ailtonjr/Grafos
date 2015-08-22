@@ -160,7 +160,7 @@ public class Tela extends javax.swing.JFrame {
         textField_rotulo.setEnabled(false);
         textField_rotulo.setText("");
         texto.setText(bfs.retorno);
-        conexo.setText(bfs.conexo);
+        conexo.setText(bfs.conexoTexto);
     }//GEN-LAST:event_buttonBFSActionPerformed
 
     private void textField_rotuloActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_textField_rotuloActionPerformed

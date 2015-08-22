@@ -4,6 +4,7 @@ import br.univali.grafos.principal.Arco;
 import br.univali.grafos.principal.MeuGrafo;
 import br.univali.grafos.principal.Vertice;
 import java.util.ArrayList;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Stack;
 
@@ -31,7 +32,8 @@ public class DFS {
         }
         System.err.println("tamanho pilha retorno " + caminhoRetorno.size());
         if (!caminhoRetorno.isEmpty()) {
-            for (String caminhoRetorno : caminhoRetorno) {
+            for (Iterator<String> it = caminhoRetorno.iterator(); it.hasNext();) {
+                String caminhoRetorno = it.next();
                 retorno = retorno + " - > " + caminhoRetorno;
                 System.err.println("Retorno ---------------------------------- " + retorno);
             }
@@ -47,22 +49,22 @@ public class DFS {
         while (!pilha.empty()) {
             if (!pilha.lastElement().arcos.isEmpty()) {
                 for (Arco arco : pilha.lastElement().arcos) {
-                    if (!arco.verticeB.visitado) {
-                        System.out.println("Empilhou " + arco.verticeB.rotulo);
-                        pilha.push(arco.verticeB);
+                    if (!arco.destino.visitado) {
+                        System.out.println("Empilhou " + arco.destino.rotulo);
+                        pilha.push(arco.destino);
                         if (pilha.lastElement().rotulo.equalsIgnoreCase(rotulo)) {
                             for (Vertice pilhaOriginal : pilha) {
                                 caminhoRetorno.add(pilhaOriginal.rotulo);
                             }
                         }
-                        arco.verticeB.visitado = true;
+                        arco.destino.visitado = true;
                         break;
                     } else {
                         int cont = 0;
                         if (pilha.size() > 0) {
                             cont = pilha.lastElement().arcos.size();
                             for (Arco arco1 : pilha.lastElement().arcos) {
-                                if (arco1.verticeB.visitado) {
+                                if (arco1.destino.visitado) {
                                     cont--;
                                     if (cont == 0) {
                                         System.out.println("Desempilhou " + pilha.lastElement().rotulo);

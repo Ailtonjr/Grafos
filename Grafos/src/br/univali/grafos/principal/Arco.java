@@ -2,14 +2,14 @@ package br.univali.grafos.principal;
 
 
 public class Arco {
-    public Vertice verticeA;
-    public Vertice verticeB;
+    public Vertice origem;
+    public Vertice destino;
     public double peso;
     public boolean visitado = false;
 
-    public Arco(Vertice verticeA, Vertice verticeB, double peso) {
-        this.verticeA = verticeA;
-        this.verticeB = verticeB;
+    public Arco(Vertice origem, Vertice destino, double peso) {
+        this.origem = origem;
+        this.destino = destino;
         this.peso = peso;
     }
     
