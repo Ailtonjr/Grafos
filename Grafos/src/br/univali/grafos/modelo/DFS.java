@@ -13,7 +13,7 @@ public class DFS {
     Stack<Vertice> pilha = new Stack<>();
     public List<String> caminhoRetorno = new ArrayList<>();
     public String retorno = "Encontrado";
-    public String conexo = "Conexo";
+    public String conexoTexto = "Conexo";
 
     public void busca(MeuGrafo grafo, String rotulo) {
         int cont = 0;
@@ -26,9 +26,9 @@ public class DFS {
                 percorrer(rotulo);
             }
         }
-        if (cont > 1) {
+        if (cont > 1 || verificaConexao(grafo)) {
             System.out.println("Não é conexo!");
-            conexo = "Não Conexo";
+            conexoTexto = "Não Conexo";
         }
         System.err.println("tamanho pilha retorno " + caminhoRetorno.size());
         if (!caminhoRetorno.isEmpty()) {
@@ -37,10 +37,30 @@ public class DFS {
                 retorno = retorno + " - > " + caminhoRetorno;
                 System.err.println("Retorno ---------------------------------- " + retorno);
             }
-        }else{
+        } else {
             retorno = "Não Encontrado";
         }
 
+    }
+
+    private boolean verificaConexao(MeuGrafo grafo) {
+        int contOrigem = 0, contDestino = 0;
+        for (Vertice vertice : grafo.vertices) {
+            for (Arco arco : grafo.todosArcos) {
+                if (vertice.id == arco.origem.id) {
+                    contOrigem++;
+                }
+                if (vertice.id == arco.destino.id) {
+                    contDestino++;
+                }
+
+            }
+            if (contOrigem == 0 || contDestino == 0) {
+                System.err.println("nao é");
+                return true;
+            }
+        }
+        return false;
     }
 
     public void percorrer(String rotulo) {

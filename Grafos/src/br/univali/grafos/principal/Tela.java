@@ -59,6 +59,7 @@ public class Tela extends javax.swing.JFrame {
         });
 
         textField_rotulo.setEnabled(false);
+        textField_rotulo.setNextFocusableComponent(textField_rotulo);
         textField_rotulo.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 textField_rotuloActionPerformed(evt);
@@ -138,6 +139,7 @@ public class Tela extends javax.swing.JFrame {
             texto.setText("");
             conexo.setText("");
         }
+        buttonXML.transferFocus();
     }//GEN-LAST:event_buttonXMLActionPerformed
 
 
@@ -149,7 +151,7 @@ public class Tela extends javax.swing.JFrame {
         textField_rotulo.setEnabled(false);
         textField_rotulo.setText("");
         texto.setText(dfs.retorno);
-        conexo.setText(dfs.conexo);
+        conexo.setText(dfs.conexoTexto);
     }//GEN-LAST:event_buttonDFSActionPerformed
 
     private void buttonBFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonBFSActionPerformed

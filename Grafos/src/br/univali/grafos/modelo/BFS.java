@@ -42,14 +42,18 @@ public class BFS {
     }
 
     private boolean verificaConexao(MeuGrafo grafo) {
-        int cont = 0;
+        int contOrigem = 0, contDestino=0;
         for (Vertice vertice : grafo.vertices) {
             for (Arco arco : grafo.todosArcos) {
                 if (vertice.id == arco.origem.id) {
-                    cont++;
+                    contOrigem++;
                 }
+                if (vertice.id == arco.destino.id) {
+                    contDestino++;
+                }
+                
             }
-            if (cont == 0) {
+            if (contOrigem == 0 || contDestino == 0) {
                 System.err.println("nao é");
                 return true;
             }
