@@ -3,6 +3,8 @@ package br.univali.grafos.principal;
 
 
 import java.io.*;
+import java.util.ArrayList;
+import java.util.List;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
@@ -33,6 +35,37 @@ public class LeitorXml {
         grafo = new MeuGrafo();
     }
     
+    public static void removeComentariosXML(String path) {
+        File file = new File(path);
+
+        try {
+            FileReader fr = new FileReader(file);
+            BufferedReader br = new BufferedReader(fr);
+            List<String> linhas = new ArrayList();
+
+            String linha = br.readLine();
+
+            while (linha != null) {             // Leitura
+                if (!linha.contains("<!--")) {
+                    linhas.add(linha);
+                }
+                System.out.println(linha);      // LOG
+                linha = br.readLine();
+            }
+            
+            FileWriter fw = new FileWriter(path);
+            for (String l : linhas) {           // Escrita
+                fw.write(l + "\n");
+            }
+            
+            fr.close();
+            br.close();
+            fw.close();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
     public static Object grafoFromXML() {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         JFileChooser fileChooser = new JFileChooser();
@@ -41,6 +74,8 @@ public class LeitorXml {
         File file = null;
         int returnVal = fileChooser.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
+            removeComentariosXML(fileChooser.getSelectedFile().getPath());
+            
             file = fileChooser.getSelectedFile();
             try {
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
