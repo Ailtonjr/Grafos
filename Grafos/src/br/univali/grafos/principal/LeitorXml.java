@@ -49,7 +49,7 @@ public class LeitorXml {
                 if (!linha.contains("<!--")) {
                     linhas.add(linha);
                 }
-                System.out.println(linha);      // LOG
+                //System.out.println(linha);      // LOG
                 linha = br.readLine();
             }
             
