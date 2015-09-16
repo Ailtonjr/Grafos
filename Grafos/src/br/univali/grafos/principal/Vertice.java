@@ -11,6 +11,8 @@ public class Vertice {
     public String rotulo;
     public boolean visitado = false;
     public List<Arco> arcos;
+    public String precedente = "-";
+    public int estimativa;
 
     public Vertice(String rotulo, int id) {
         arcos = new ArrayList<>();
