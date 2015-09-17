@@ -12,7 +12,7 @@ public class Vertice {
     public boolean visitado = false;
     public List<Arco> arcos;
     public String precedente = "-";
-    public int estimativa;
+    public double estimativa = (-1);
 
     public Vertice(String rotulo, int id) {
         arcos = new ArrayList<>();
