@@ -16,82 +16,42 @@ import br.univali.grafos.principal.Vertice;
 public class Dijkstra {
 
     int proximo = 0;
-    double aux;
+    double menor = 9223372036854775807L;
+
     MeuGrafo grafo;
 
     public void busca(MeuGrafo grafo, String rotulo) {
         this.grafo = grafo;
         grafo.vertices.get(0).estimativa = 0;
         grafo.vertices.get(0).precedente = grafo.vertices.get(0).rotulo;
-
-        aux = grafo.vertices.get(0).arcos.get(0).peso;
         percorre(grafo.vertices.get(0));
-        //while (!verticeComplete()) {
-        if (!grafo.vertices.get(1).arcos.isEmpty()) {
-            aux = grafo.vertices.get(1).arcos.get(0).peso;
-            if (grafo.vertices.get(1).arcos.get(0).peso <= aux) {
-                if (!grafo.vertices.get(1).arcos.get(0).destino.visitado) {
-                    proximo = grafo.vertices.get(1).arcos.get(0).destino.id;
+
+        while (!verticeComplete()) {
+            menor = 9223372036854775807L;
+            if (!grafo.vertices.get(proximo).arcos.isEmpty()) {
+                if (grafo.vertices.get(proximo).arcos.get(0).peso <= menor) {
+                    percorre(grafo.vertices.get(proximo));
                 }
-                percorre(grafo.vertices.get(1));
             }
         }
-
-        if (!grafo.vertices.get(4).arcos.isEmpty()) {
-            aux = grafo.vertices.get(4).arcos.get(0).peso;
-            if (grafo.vertices.get(4).arcos.get(0).peso <= aux) {
-                if (!grafo.vertices.get(4).arcos.get(0).destino.visitado) {
-                    proximo = grafo.vertices.get(4).arcos.get(0).destino.id;
-                }
-
-                percorre(grafo.vertices.get(4));
-            }
-        }
-
-        if (!grafo.vertices.get(3).arcos.isEmpty()) {
-            aux = grafo.vertices.get(3).arcos.get(0).peso;
-            if (grafo.vertices.get(3).arcos.get(0).peso <= aux) {
-                if (!grafo.vertices.get(3).arcos.get(0).destino.visitado) {
-                    proximo = grafo.vertices.get(3).arcos.get(0).destino.id;
-                }
-
-                percorre(grafo.vertices.get(3));
-            }
-        }
-        
-        if (!grafo.vertices.get(2).arcos.isEmpty()) {
-            aux = grafo.vertices.get(2).arcos.get(0).peso;
-            if (grafo.vertices.get(2).arcos.get(0).peso <= aux) {
-                if (!grafo.vertices.get(2).arcos.get(0).destino.visitado) {
-                    proximo = grafo.vertices.get(2).arcos.get(0).destino.id;
-                }
-
-                percorre(grafo.vertices.get(2));
-            }
-        }
-
-        verticeComplete();
-        //}
     }
 
     private void percorre(Vertice verticeAtual) {
-        System.out.println("entrou com " + verticeAtual.rotulo);
+        System.out.println("\n\nVerificando " + verticeAtual.rotulo);
         for (Arco arco : verticeAtual.arcos) {
             if (arco.destino.estimativa == -1) {
-                if (arco.peso < aux && !arco.destino.visitado) {
-                    aux = arco.peso;
+                if (arco.peso < menor && !arco.destino.visitado) {
+                    menor = arco.peso;
                     proximo = arco.destino.id;
-                    System.out.println("aux1 " + aux + "\t proximo " + proximo);
                 }
                 arco.destino.estimativa = arco.origem.estimativa + arco.peso;
                 arco.destino.precedente = arco.origem.rotulo;
-                System.out.println("colocou " + arco.destino.estimativa + " no " + arco.destino.rotulo);
+                System.out.println("Inseriu " + arco.destino.estimativa + " no " + arco.destino.rotulo);
 
             } else if (arco.destino.estimativa > (arco.peso + arco.origem.estimativa)) {
-                if (arco.peso < aux && !arco.destino.visitado) {
-                    aux = arco.peso;
+                if (arco.peso < menor && !arco.destino.visitado) {
+                    menor = arco.peso;
                     proximo = arco.destino.id;
-                    System.out.println("aux2 " + aux + "\t proximo " + proximo);
                 }
                 arco.destino.estimativa = arco.origem.estimativa + arco.peso;
                 arco.destino.precedente = arco.origem.rotulo;
@@ -99,9 +59,15 @@ public class Dijkstra {
             }
         }
         verticeAtual.visitado = true;
-        System.out.println("vertice " + verticeAtual.rotulo + " visitado");
-        System.out.println("Menor " + aux);
-        System.out.println("Proximo " + grafo.vertices.get(proximo).rotulo + "\n");
+        System.out.println("Marcou vertice " + verticeAtual.rotulo + " como visitado");
+        if (menor == 9223372036854775807L) {
+            for (Vertice vertice : grafo.vertices) {
+                if (!vertice.visitado) {
+                    proximo = vertice.id;
+                }
+            }
+        }
+        System.out.println("Proximo " + grafo.vertices.get(proximo).rotulo);
     }
 
     boolean verticeComplete() {
