@@ -8,6 +8,7 @@ package br.univali.grafos.modelo;
 import br.univali.grafos.principal.Arco;
 import br.univali.grafos.principal.MeuGrafo;
 import br.univali.grafos.principal.Vertice;
+import javax.swing.JTextField;
 
 /**
  *
@@ -20,11 +21,16 @@ public class Dijkstra {
 
     MeuGrafo grafo;
 
-    public void busca(MeuGrafo grafo, String rotulo) {
+    public void busca(MeuGrafo grafo, String rotuloInicial, String rotuloBusca) {
         this.grafo = grafo;
-        grafo.vertices.get(0).estimativa = 0;
-        grafo.vertices.get(0).precedente = grafo.vertices.get(0).rotulo;
-        percorre(grafo.vertices.get(0));
+        for (Vertice vertice : grafo.vertices) {
+            if (vertice.rotulo.equalsIgnoreCase(rotuloInicial)) {
+                int inicial = vertice.id;
+                grafo.vertices.get(inicial).estimativa = 0;
+                grafo.vertices.get(inicial).precedente = grafo.vertices.get(0).rotulo;
+                percorre(grafo.vertices.get(inicial));
+            }
+        }
 
         while (!verticeComplete()) {
             menor = 9223372036854775807L;
@@ -78,9 +84,23 @@ public class Dijkstra {
             }
         }
         if (cont == grafo.vertices.size()) {
-            System.out.println("acabou!!!!!!!!!!!!!");
+            System.out.println("\n\n---------------------------- Resultados ----------------------------\n");
+            System.out.print("Vertice:");
+            for (Vertice vertice : grafo.vertices) {
+                System.out.print("\t " + vertice.rotulo);
+            }
+            System.out.print("\n\nEstimativa:");
+            for (Vertice vertice : grafo.vertices) {
+                System.out.print("\t" + vertice.estimativa);
+            }
+            System.out.print("\n\nPrecedente:");
+            for (Vertice vertice : grafo.vertices) {
+                System.out.print("\t " + vertice.precedente);
+            }
+            System.out.println("\n");
             return true;
         }
         return false;
     }
+
 }
