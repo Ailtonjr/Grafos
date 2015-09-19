@@ -1,23 +1,18 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.univali.grafos.modelo;
 
 import br.univali.grafos.principal.Arco;
 import br.univali.grafos.principal.MeuGrafo;
 import br.univali.grafos.principal.Vertice;
-import javax.swing.JTextField;
+import java.util.ArrayList;
+import java.util.List;
 
-/**
- *
- * @author Ailton Jr
- */
+
 public class Dijkstra {
 
     int proximo = 0;
     double menor = 9223372036854775807L;
+    List<String> caminho = new ArrayList();
 
     MeuGrafo grafo;
 
@@ -27,7 +22,7 @@ public class Dijkstra {
             if (vertice.rotulo.equalsIgnoreCase(rotuloInicial)) {
                 int inicial = vertice.id;
                 grafo.vertices.get(inicial).estimativa = 0;
-                grafo.vertices.get(inicial).precedente = grafo.vertices.get(0).rotulo;
+                grafo.vertices.get(inicial).precedente = grafo.vertices.get(inicial).rotulo;
                 percorre(grafo.vertices.get(inicial));
             }
         }
@@ -40,6 +35,38 @@ public class Dijkstra {
                 }
             }
         }
+        
+        
+        // Caminho
+        Vertice verticeAux = null;
+        double custo = 0;
+        for (Vertice vertice : grafo.vertices) {    // Procura a instancia do vertice de busca
+            if (vertice.rotulo.equalsIgnoreCase(rotuloBusca)) {
+                verticeAux = vertice;
+                custo = verticeAux.estimativa;
+                break;
+            }
+        }
+        
+        while(!verticeAux.rotulo.equalsIgnoreCase(rotuloInicial)) {
+            caminho.add(verticeAux.rotulo);
+            
+            for (int i = 0; i < grafo.vertices.size(); i++) {
+                if (grafo.vertices.get(i).rotulo.equalsIgnoreCase(verticeAux.precedente)) {
+                    verticeAux = grafo.vertices.get(i);
+                    break;
+                }
+            }
+        }
+        caminho.add(rotuloInicial);
+        
+        System.out.print("--------------------------------------------------------------------\nCaminho:\t");
+        
+        for (int i = caminho.size() - 1; i >= 0; i--) {
+            System.out.print(caminho.get(i) + "\t");
+        }
+        // Custo
+        System.out.println("\nCusto:\t" + custo);
     }
 
     private void percorre(Vertice verticeAtual) {
