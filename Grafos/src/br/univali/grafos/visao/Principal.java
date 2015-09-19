@@ -1,9 +1,13 @@
+/*
+    UNIVALI - Departamento de Ciência da Computação
+    Escrito pelos acadêmicos    Ailton Cardoso Júnior
+                                João Felipe Gonçalves
+
+    Esta classe descreve a tela inicial do sistema.
+*/
+
 package br.univali.grafos.visao;
 
-import br.univali.grafos.modelo.BFS;
-import br.univali.grafos.modelo.DFS;
-import br.univali.grafos.modelo.Dijkstra;
-import br.univali.grafos.principal.LeitorXml;
 import br.univali.grafos.principal.MeuGrafo;
 
 public class Principal extends javax.swing.JFrame {
@@ -13,6 +17,7 @@ public class Principal extends javax.swing.JFrame {
 
     public Principal() {
         initComponents();
+        this.setLocationRelativeTo(null);
     }
 
     /**
