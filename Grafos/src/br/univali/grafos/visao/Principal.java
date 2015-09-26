@@ -131,6 +131,9 @@ public class Principal extends javax.swing.JFrame {
         TelaAEstrela telaAEstrela  = new TelaAEstrela(this, false);
         telaAEstrela.setVisible(true); //Chama a dialog  
         telaAEstrela = null; //Deixa o garbage collector agir
+        
+        //Teste teste = new Teste(this,false);
+        //teste.setVisible(true);
     }//GEN-LAST:event_button_AActionPerformed
 
     /**

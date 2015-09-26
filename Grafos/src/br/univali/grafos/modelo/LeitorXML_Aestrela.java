@@ -1,4 +1,3 @@
-
 package br.univali.grafos.modelo;
 
 import static br.univali.grafos.principal.LeitorXml.removeComentariosXML;
@@ -6,23 +5,22 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 import javax.swing.JFileChooser;
-import javax.swing.JOptionPane;
 import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.xml.parsers.DocumentBuilder;
 import javax.xml.parsers.DocumentBuilderFactory;
 import org.w3c.dom.Document;
-import org.w3c.dom.Element;
 import org.w3c.dom.Node;
 import org.w3c.dom.NodeList;
 
 public class LeitorXML_Aestrela {
-    
+
     private List<String> xml = new ArrayList();
     private int linhas = 0;
     private int colunas = 0;
-    private int[] inicial = new int[2];
-    
-    public LeitorXML_Aestrela() {
+    private Elemento[][] matriz;
+    private String[] vet;
+
+    public Elemento[][] montaMatriz() {
         DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
         JFileChooser fileChooser = new JFileChooser();
         FileNameExtensionFilter extensionFilter = new FileNameExtensionFilter("Arquivo XML", "xml");
@@ -31,7 +29,7 @@ public class LeitorXML_Aestrela {
         int returnVal = fileChooser.showOpenDialog(null);
         if (returnVal == JFileChooser.APPROVE_OPTION) {
             removeComentariosXML(fileChooser.getSelectedFile().getPath());
-            
+
             file = fileChooser.getSelectedFile();
             try {
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
@@ -39,33 +37,46 @@ public class LeitorXML_Aestrela {
                 doc.getDocumentElement().normalize();
                 NodeList nodes = doc.getElementsByTagName("LINHAS");
                 linhas = Integer.parseInt(nodes.item(0).getTextContent());
-                
+
                 nodes = doc.getElementsByTagName("COLUNAS");
                 colunas = Integer.parseInt(nodes.item(0).getTextContent());
+
+                matriz = new Elemento[linhas][colunas];
                 
-                nodes = doc.getElementsByTagName("INICIAL");
-                inicial[0] = Integer.parseInt(nodes.item(0).getTextContent());  // Arrumar
-                
-                
-                nodes = doc.getElementsByTagName("Aresta");
-                for (int i = 0; i < nodes.getLength(); i++) {
-                    Node node = nodes.item(i);
-                    if (node.getNodeType() == Node.ELEMENT_NODE) {
-                        Element element = (Element) node;
-                        int idVertice1 = Integer.parseInt(element.getAttribute("idVertice1"));
-                        int idVertice2 = Integer.parseInt(element.getAttribute("idVertice2"));
-                        double peso = Double.parseDouble(element.getAttribute("peso"));
-                        //grafo.adicionarArco(idVertice1, idVertice2, peso);
+                // Inicializando a matriz
+                for (int i = 0; i < linhas; i++) {
+                    for (int j = 0; j < colunas; j++) {
+                        matriz[i][j] = new Elemento(i, j);
                     }
                 }
+
+                nodes = doc.getElementsByTagName("INICIAL");
+                vet = nodes.item(0).getTextContent().split(",");
+                
+                matriz[Integer.parseInt(vet[0])][Integer.parseInt(vet[1])].setTipo("Inicial");
+
+                nodes = doc.getElementsByTagName("FINAL");
+                vet = nodes.item(0).getTextContent().split(",");
+                matriz[Integer.parseInt(vet[0])][Integer.parseInt(vet[1])].setTipo("Final");
+
+                nodes = doc.getElementsByTagName("MURO");
+                for (int i = 0; i < nodes.getLength(); i++) {
+                    Node node = nodes.item(i);
+                    vet = node.getTextContent().split(",");
+                    matriz[Integer.parseInt(vet[0])][Integer.parseInt(vet[1])].setTipo("Muro");
+                }
                 System.out.println("Leitura do XML Completa");
-                //return grafo; 
+                for (int i = 0; i < linhas; i++) {
+                    for (int j = 0; j < colunas; j++) {
+                        System.out.print(matriz[i][j].getTipo() + "\t");
+                    }
+                    System.out.println("");
+                }
+                return matriz; 
             } catch (Exception ex) {
-                System.err.println(ex);
+                ex.printStackTrace();
             }
         }
-        //return null;
+        return null;
     }
-    
-    
 }
