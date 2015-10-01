@@ -47,7 +47,6 @@ public class TelaAEstrela extends javax.swing.JDialog {
                 painel_tabela.add(painel);
             }
         }
-
         AStar aStar = new AStar(paineis, elementos);
     }
 
