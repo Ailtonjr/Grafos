@@ -24,7 +24,7 @@ public class Planaridade {
                         System.out.println("O grafo NAO e planar!");
                     }
                 } else {
-                    System.out.println("O grafo NAO e planar!");
+                    System.out.println("O grafo E PLANAR!");
                 }
                 
             } else {
