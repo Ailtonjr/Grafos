@@ -1,20 +1,11 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package br.univali.grafos.visao;
 
 import br.univali.grafos.modelo.BFS;
-import br.univali.grafos.modelo.DFS;
-import br.univali.grafos.modelo.Dijkstra;
 import br.univali.grafos.principal.LeitorXml;
 import br.univali.grafos.principal.MeuGrafo;
 
-/**
- *
- * @author Ailton Cardoso Jr
- */
+
 public class TelaBFS extends javax.swing.JDialog {
 
     MeuGrafo meuGrafo = null;
@@ -23,6 +14,7 @@ public class TelaBFS extends javax.swing.JDialog {
     public TelaBFS(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setTitle("BFS - Breadth-first search");
     }
 
 
