@@ -38,6 +38,9 @@ public class Planaridade {
     
     public boolean cicloDeTres() {
         // TO DO: Verificar ciclo de comprimento tres
+        
+        
+        
         return true;
     }
     
