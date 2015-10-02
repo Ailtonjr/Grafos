@@ -4,7 +4,7 @@ import java.awt.Color;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.List;
-
+//teste
 public class AStar {
 
     private int percorrido = 0;
