@@ -21,6 +21,7 @@ public class TelaDFS extends javax.swing.JDialog {
     public TelaDFS(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
+        this.setTitle("DFS - Depth-first search ");
     }
 
 
