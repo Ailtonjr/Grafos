@@ -2,7 +2,7 @@
 package br.univali.grafos.modelo;
 
 import br.univali.grafos.principal.Arco;
-import br.univali.grafos.principal.MeuGrafo;
+import br.univali.grafos.principal.Grafo;
 import br.univali.grafos.principal.Vertice;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,9 +14,9 @@ public class Dijkstra {
     double menor = 9223372036854775807L;
     List<String> caminho = new ArrayList();
 
-    MeuGrafo grafo;
+    Grafo grafo;
 
-    public void busca(MeuGrafo grafo, String rotuloInicial, String rotuloBusca) {
+    public void busca(Grafo grafo, String rotuloInicial, String rotuloBusca) {
         this.grafo = grafo;
         for (Vertice vertice : grafo.vertices) {
             if (vertice.rotulo.equalsIgnoreCase(rotuloInicial)) {

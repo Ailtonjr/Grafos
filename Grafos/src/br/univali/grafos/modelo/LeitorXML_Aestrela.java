@@ -44,9 +44,9 @@ public class LeitorXML_Aestrela {
                 matriz = new Painel[linhas][colunas];
 
                 // Inicializando a matriz
-                for (int i = 0; i < linhas; i++) {
-                    for (int j = 0; j < colunas; j++) {
-                        matriz[i][j] = new Painel(i, j);
+                for (int lin = 0; lin < linhas; lin++) {
+                    for (int col = 0; col < colunas; col++) {
+                        matriz[lin][col] = new Painel(lin, col);
                     }
                 }
 

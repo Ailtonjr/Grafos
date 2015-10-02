@@ -7,7 +7,7 @@ package br.univali.grafos.visao;
 
 import br.univali.grafos.modelo.DFS;
 import br.univali.grafos.principal.LeitorXml;
-import br.univali.grafos.principal.MeuGrafo;
+import br.univali.grafos.principal.Grafo;
 
 /**
  *
@@ -15,8 +15,8 @@ import br.univali.grafos.principal.MeuGrafo;
  */
 public class TelaDFS extends javax.swing.JDialog {
 
-    MeuGrafo meuGrafo = null;
-    MeuGrafo backupGrafo = null;
+    Grafo meuGrafo = null;
+    Grafo backupGrafo = null;
     
     public TelaDFS(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
@@ -129,7 +129,7 @@ public class TelaDFS extends javax.swing.JDialog {
 
     private void buttonXMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_buttonXMLActionPerformed
         LeitorXml leitorXml = new LeitorXml();
-        meuGrafo = (MeuGrafo) leitorXml.grafoFromXML();
+        meuGrafo = (Grafo) leitorXml.grafoFromXML();
         if (meuGrafo != null) {
             buttonDFS.setEnabled(true);
             textField_rotuloBusca.setEnabled(true);

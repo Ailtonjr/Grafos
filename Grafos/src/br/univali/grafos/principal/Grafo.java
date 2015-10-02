@@ -4,12 +4,12 @@ import java.util.ArrayList;
 import java.util.List;
 
 
-public class MeuGrafo {
+public class Grafo {
     
     public List<Vertice> vertices;
     public List<Arco> todosArcos;
     
-    public MeuGrafo(){
+    public Grafo(){
         this.vertices = new ArrayList<>();
         this.todosArcos = new ArrayList<>();
     }

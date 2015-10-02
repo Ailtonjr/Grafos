@@ -8,7 +8,7 @@ package br.univali.grafos.visao;
 import br.univali.grafos.modelo.Painel;
 import br.univali.grafos.modelo.AStar;
 import br.univali.grafos.modelo.LeitorXML_Aestrela;
-import br.univali.grafos.principal.MeuGrafo;
+import br.univali.grafos.principal.Grafo;
 import java.awt.GridLayout;
 import javax.swing.JLabel;
 
@@ -18,36 +18,32 @@ import javax.swing.JLabel;
  */
 public class TelaAEstrela extends javax.swing.JDialog {
 
-    MeuGrafo meuGrafo = null;
-    MeuGrafo backupGrafo = null;
-    //private static final int GRID_ROWS = 15;
-    //private static final int GRID_COLS = 15;
-    Painel[][] paineis;
+    private Painel[][] paineis;
+    private Grafo meuGrafo = null;
 
     public TelaAEstrela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
         LeitorXML_Aestrela leitor = new LeitorXML_Aestrela();
-        Painel[][] elementos = leitor.montaMatriz();
-
-        paineis = new Painel[leitor.getLinhas()][leitor.getColunas()];
+        paineis = leitor.montaMatriz();
         painel_tabela.setLayout(new GridLayout(leitor.getLinhas(), leitor.getColunas()));
-        for (int row = 0; row < leitor.getLinhas(); row++) {
-            painel_y.add(new JLabel("" + row));
+        
+        // Adiciona indices para o eixo y
+        for (int lin = 0; lin < leitor.getLinhas(); lin++) {
+            painel_y.add(new JLabel("" + lin));
         }
+        // Adiciona indices para o eixo x
         for (int col = 0; col < leitor.getColunas(); col++) {
             painel_x.add(new JLabel("    " + col));
         }
         
-        
-        for (int row = 0; row < leitor.getLinhas(); row++) {
+        // Adiciona os paineis na tela
+        for (int lin = 0; lin < leitor.getLinhas(); lin++) {
             for (int col = 0; col < leitor.getColunas(); col++) {
-                Painel painel = new Painel(row, col);
-                paineis[row][col] = painel;
-                painel_tabela.add(painel);
+                painel_tabela.add(paineis[lin][col]);
             }
         }
-        AStar aStar = new AStar(paineis, elementos);
+        AStar aStar = new AStar(paineis);
     }
 
     /**

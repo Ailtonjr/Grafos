@@ -1,7 +1,7 @@
 package br.univali.grafos.modelo;
 
 import br.univali.grafos.principal.Arco;
-import br.univali.grafos.principal.MeuGrafo;
+import br.univali.grafos.principal.Grafo;
 import br.univali.grafos.principal.Vertice;
 import java.util.ArrayList;
 import java.util.Iterator;
@@ -15,7 +15,7 @@ public class DFS {
     public String retorno = "Encontrado";
     public String conexoTexto = "Conexo";
 
-    public void busca(MeuGrafo grafo, String rotulo) {
+    public void busca(Grafo grafo, String rotulo) {
         int cont = 0;
         for (Vertice vertice : grafo.vertices) {
             if (!vertice.visitado) {
@@ -43,7 +43,7 @@ public class DFS {
 
     }
 
-    private boolean verificaConexao(MeuGrafo grafo) {
+    private boolean verificaConexao(Grafo grafo) {
         int contOrigem = 0, contDestino = 0;
         for (Vertice vertice : grafo.vertices) {
             for (Arco arco : grafo.todosArcos) {

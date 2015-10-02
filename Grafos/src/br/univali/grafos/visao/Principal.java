@@ -8,12 +8,12 @@
 
 package br.univali.grafos.visao;
 
-import br.univali.grafos.principal.MeuGrafo;
+import br.univali.grafos.principal.Grafo;
 
 public class Principal extends javax.swing.JFrame {
 
-    MeuGrafo meuGrafo = null;
-    MeuGrafo backupGrafo = null;
+    Grafo meuGrafo = null;
+    Grafo backupGrafo = null;
 
     public Principal() {
         initComponents();

@@ -6,7 +6,7 @@
 package br.univali.grafos.modelo;
 
 import br.univali.grafos.principal.Arco;
-import br.univali.grafos.principal.MeuGrafo;
+import br.univali.grafos.principal.Grafo;
 import br.univali.grafos.principal.Vertice;
 import java.util.LinkedList;
 import java.util.Queue;
@@ -22,7 +22,7 @@ public class BFS {
     public String conexoTexto = "Conexo";
     boolean conexao = true;
 
-    public void busca(MeuGrafo grafo, String rotulo) {
+    public void busca(Grafo grafo, String rotulo) {
         int cont = 0;
         for (Vertice vertice : grafo.vertices) {
             if (!vertice.visitado) {
@@ -41,7 +41,7 @@ public class BFS {
         }
     }
 
-    private boolean verificaConexao(MeuGrafo grafo) {
+    private boolean verificaConexao(Grafo grafo) {
         int contOrigem = 0, contDestino=0;
         for (Vertice vertice : grafo.vertices) {
             for (Arco arco : grafo.todosArcos) {

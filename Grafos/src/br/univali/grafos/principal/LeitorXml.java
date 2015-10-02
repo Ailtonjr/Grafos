@@ -30,9 +30,9 @@ import org.w3c.dom.NodeList;
 public class LeitorXml {
     
     
-    static MeuGrafo grafo = null;
+    static Grafo grafo = null;
     public LeitorXml() {
-        grafo = new MeuGrafo();
+        grafo = new Grafo();
     }
     
     public static void removeComentariosXML(String path) {
