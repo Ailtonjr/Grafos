@@ -17,7 +17,7 @@ public class LeitorXML_Aestrela {
     private List<String> xml = new ArrayList();
     private int linhas = 0;
     private int colunas = 0;
-    private Painel[][] matriz;
+    private Painel[][] paineis;
     private String[] vet;
 
     public Painel[][] montaMatriz() {
@@ -41,38 +41,38 @@ public class LeitorXML_Aestrela {
                 nodes = doc.getElementsByTagName("COLUNAS");
                 colunas = Integer.parseInt(nodes.item(0).getTextContent());
 
-                matriz = new Painel[linhas][colunas];
+                paineis = new Painel[linhas][colunas];
 
                 // Inicializando a matriz
                 for (int lin = 0; lin < linhas; lin++) {
                     for (int col = 0; col < colunas; col++) {
-                        matriz[lin][col] = new Painel(lin, col);
+                        paineis[lin][col] = new Painel(lin, col);
                     }
                 }
 
                 nodes = doc.getElementsByTagName("INICIAL");
                 vet = nodes.item(0).getTextContent().split(",");
 
-                matriz[Integer.parseInt(vet[0])][Integer.parseInt(vet[1])].setTipo("Inicial");
+                paineis[Integer.parseInt(vet[0])][Integer.parseInt(vet[1])].setTipo("Inicial");
 
                 nodes = doc.getElementsByTagName("FINAL");
                 vet = nodes.item(0).getTextContent().split(",");
-                matriz[Integer.parseInt(vet[0])][Integer.parseInt(vet[1])].setTipo("Final");
+                paineis[Integer.parseInt(vet[0])][Integer.parseInt(vet[1])].setTipo("Final");
 
                 nodes = doc.getElementsByTagName("MURO");
                 for (int i = 0; i < nodes.getLength(); i++) {
                     Node node = nodes.item(i);
                     vet = node.getTextContent().split(",");
-                    matriz[Integer.parseInt(vet[0])][Integer.parseInt(vet[1])].setTipo("Muro");
+                    paineis[Integer.parseInt(vet[0])][Integer.parseInt(vet[1])].setTipo("Muro");
                 }
                 System.out.println("Leitura do XML Completa");
                 for (int i = 0; i < linhas; i++) {
                     for (int j = 0; j < colunas; j++) {
-                        System.out.print(matriz[i][j].getTipo() + "\t");
+                        System.out.print(paineis[i][j].getTipo() + "\t");
                     }
                     System.out.println("");
                 }
-                return matriz;
+                return paineis;
             } catch (Exception ex) {
                 ex.printStackTrace();
             }

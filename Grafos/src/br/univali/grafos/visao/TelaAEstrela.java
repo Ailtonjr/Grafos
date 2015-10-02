@@ -20,30 +20,12 @@ public class TelaAEstrela extends javax.swing.JDialog {
 
     private Painel[][] paineis;
     private Grafo meuGrafo = null;
+    AStar aStar;
 
     public TelaAEstrela(java.awt.Frame parent, boolean modal) {
         super(parent, modal);
         initComponents();
-        LeitorXML_Aestrela leitor = new LeitorXML_Aestrela();
-        paineis = leitor.montaMatriz();
-        painel_tabela.setLayout(new GridLayout(leitor.getLinhas(), leitor.getColunas()));
-        
-        // Adiciona indices para o eixo y
-        for (int lin = 0; lin < leitor.getLinhas(); lin++) {
-            painel_y.add(new JLabel("" + lin));
-        }
-        // Adiciona indices para o eixo x
-        for (int col = 0; col < leitor.getColunas(); col++) {
-            painel_x.add(new JLabel("    " + col));
-        }
-        
-        // Adiciona os paineis na tela
-        for (int lin = 0; lin < leitor.getLinhas(); lin++) {
-            for (int col = 0; col < leitor.getColunas(); col++) {
-                painel_tabela.add(paineis[lin][col]);
-            }
-        }
-        AStar aStar = new AStar(paineis);
+
     }
 
     /**
@@ -69,11 +51,13 @@ public class TelaAEstrela extends javax.swing.JDialog {
         spinner_coluna = new javax.swing.JSpinner();
         label_x = new javax.swing.JLabel();
         spinner_linha = new javax.swing.JSpinner();
+        botao_criar = new javax.swing.JButton();
         painel_x = new javax.swing.JPanel();
         painel_y = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
+        painel_tabela.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         painel_tabela.setLayout(new java.awt.GridLayout(1, 10));
 
         painel_legenda.setBorder(javax.swing.BorderFactory.createTitledBorder("Legenda"));
@@ -176,7 +160,7 @@ public class TelaAEstrela extends javax.swing.JDialog {
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
-        botao_XML.setText("Ler XML");
+        botao_XML.setText("xml");
         botao_XML.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 botao_XMLActionPerformed(evt);
@@ -192,30 +176,47 @@ public class TelaAEstrela extends javax.swing.JDialog {
 
         jPanel1.setBorder(javax.swing.BorderFactory.createTitledBorder("Matriz"));
 
+        spinner_coluna.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(10), Integer.valueOf(0), null, Integer.valueOf(1)));
+
         label_x.setText("X");
+
+        spinner_linha.setModel(new javax.swing.SpinnerNumberModel(Integer.valueOf(10), Integer.valueOf(0), null, Integer.valueOf(1)));
+
+        botao_criar.setText("Criar");
+        botao_criar.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                botao_criarActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(spinner_linha, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(7, 7, 7)
-                .addComponent(label_x)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(spinner_coluna, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addGroup(jPanel1Layout.createSequentialGroup()
+                .addContainerGap()
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(0, 0, Short.MAX_VALUE)
+                        .addComponent(spinner_linha, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(7, 7, 7)
+                        .addComponent(label_x)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(spinner_coluna, javax.swing.GroupLayout.PREFERRED_SIZE, 41, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(botao_criar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(spinner_linha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(spinner_coluna, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(label_x))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addComponent(botao_criar)
+                .addGap(7, 7, 7))
         );
 
         painel_x.setLayout(new java.awt.GridLayout(1, 1));
@@ -231,42 +232,42 @@ public class TelaAEstrela extends javax.swing.JDialog {
                 .addComponent(painel_y, javax.swing.GroupLayout.PREFERRED_SIZE, 14, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(3, 3, 3)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addComponent(painel_x, javax.swing.GroupLayout.PREFERRED_SIZE, 722, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(0, 0, Short.MAX_VALUE))
-                    .addComponent(painel_tabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
-                            .addComponent(botao_iniciar, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(botao_XML, javax.swing.GroupLayout.PREFERRED_SIZE, 87, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGap(34, 34, 34))
+                    .addComponent(painel_x, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(painel_tabela, javax.swing.GroupLayout.DEFAULT_SIZE, 754, Short.MAX_VALUE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(painel_legenda, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(20, 20, 20))))
+                        .addGap(11, 11, 11))
+                    .addGroup(layout.createSequentialGroup()
+                        .addComponent(botao_iniciar)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(botao_XML, javax.swing.GroupLayout.PREFERRED_SIZE, 61, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addContainerGap())))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(painel_legenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(botao_XML)
-                .addGap(18, 18, 18)
-                .addComponent(botao_iniciar)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-            .addGroup(layout.createSequentialGroup()
-                .addGap(6, 6, 6)
-                .addComponent(painel_x, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(painel_tabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(painel_y, javax.swing.GroupLayout.PREFERRED_SIZE, 554, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(6, 6, 6)
+                        .addComponent(painel_x, javax.swing.GroupLayout.PREFERRED_SIZE, 18, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(painel_y, javax.swing.GroupLayout.DEFAULT_SIZE, 554, Short.MAX_VALUE)
+                            .addComponent(painel_tabela, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                    .addGroup(layout.createSequentialGroup()
+                        .addGap(25, 25, 25)
+                        .addComponent(painel_legenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(28, 28, 28)
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(botao_XML)
+                            .addComponent(botao_iniciar))))
+                .addContainerGap(20, Short.MAX_VALUE))
         );
 
         pack();
@@ -274,16 +275,72 @@ public class TelaAEstrela extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void botao_XMLActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_XMLActionPerformed
+        LeitorXML_Aestrela leitor = new LeitorXML_Aestrela();
+        paineis = leitor.montaMatriz();
+        if (leitor.getLinhas() > 0 && leitor.getColunas() > 0) {
+
+            spinner_linha.setValue(leitor.getLinhas());
+            spinner_coluna.setValue(leitor.getColunas());
+
+            // Adiciona os paineis na tela
+            addPaineisTela(leitor.getLinhas(), leitor.getColunas());
+            aStar = new AStar(paineis);
+            aStar.desenhaMatriz();
+            painel_tabela.revalidate();
+        }
 
     }//GEN-LAST:event_botao_XMLActionPerformed
 
     private void botao_iniciarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_iniciarActionPerformed
-
+        aStar = new AStar(paineis);
+        aStar.inicia();
     }//GEN-LAST:event_botao_iniciarActionPerformed
 
-    /**
-     * @param args the command line arguments
-     */
+    private void botao_criarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_botao_criarActionPerformed
+        if ((int) spinner_linha.getValue() > 0 && (int) spinner_coluna.getValue() > 0) {
+            criaTabelaEmBranco((int) spinner_linha.getValue(), (int) spinner_coluna.getValue());
+        }
+    }//GEN-LAST:event_botao_criarActionPerformed
+
+    private void addPaineisTela(int linha, int coluna) {
+        painel_tabela.removeAll();
+        painel_x.removeAll();
+        painel_y.removeAll();
+        painel_tabela.setLayout(new GridLayout(linha, coluna));
+
+        // Adiciona indices para o eixo y
+        for (int lin = 0; lin < linha; lin++) {
+            painel_y.add(new JLabel("" + lin));
+        }
+
+        // Adiciona indices para o eixo x
+        for (int col = 0; col < coluna; col++) {
+            painel_x.add(new JLabel("    " + col));
+        }
+
+        // Adiciona os paineis na tela
+        for (int lin = 0; lin < linha; lin++) {
+            for (int col = 0; col < coluna; col++) {
+                painel_tabela.add(paineis[lin][col]);
+            }
+        }
+        painel_tabela.revalidate();
+    }
+
+    private void criaTabelaEmBranco(int linhas, int colunas) {
+        // if (paineis == null) {
+        paineis = new Painel[linhas][colunas];
+
+        for (int lin = 0; lin < linhas; lin++) {
+            for (int col = 0; col < colunas; col++) {
+                if (paineis[lin][col] == null) {
+                    paineis[lin][col] = new Painel(lin, col);
+                }
+            }
+        }
+        addPaineisTela(linhas, colunas);
+    }
+
     public static void main(String args[]) {
 
         /* Create and display the dialog */
@@ -301,8 +358,10 @@ public class TelaAEstrela extends javax.swing.JDialog {
         });
     }
 
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton botao_XML;
+    private javax.swing.JButton botao_criar;
     private javax.swing.JButton botao_iniciar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label_fim;
@@ -319,4 +378,5 @@ public class TelaAEstrela extends javax.swing.JDialog {
     private javax.swing.JSpinner spinner_coluna;
     private javax.swing.JSpinner spinner_linha;
     // End of variables declaration//GEN-END:variables
+
 }

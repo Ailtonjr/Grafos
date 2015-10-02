@@ -5,6 +5,7 @@ import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.List;
 //teste
+
 public class AStar {
 
     private int percorrido = 0;
@@ -13,26 +14,44 @@ public class AStar {
     private int[] inicio = new int[2];
     private int[] fim = new int[2];
     private int[] proximoElemento = new int[4];
-    private Painel[][] matriz;
+    private Painel[][] paineis;
     private List<Painel> listaFechada;
-    
 
     public AStar(Painel[][] paineis) {
-        this.matriz = paineis;
+        this.paineis = paineis;
         this.listaFechada = new ArrayList<>();
-        if (matriz != null) {
-            for (int lin = 0; lin < matriz.length; lin++) {
-                for (int col = 0; col < matriz[lin].length; col++) {
-                    if (matriz[lin][col].getTipo().equals("Inicial")) {
+    }
+
+    public void desenhaMatriz() {
+        if (paineis != null) {
+            for (int lin = 0; lin < paineis.length; lin++) {
+                for (int col = 0; col < paineis[lin].length; col++) {
+                    if (paineis[lin][col].getTipo().equals("Inicial")) {
+                        paineis[lin][col].setBackground(Color.GREEN);
+                    } else if (paineis[lin][col].getTipo().equals("Final")) {
+                        paineis[lin][col].setBackground(Color.RED);
+                    } else if (paineis[lin][col].getTipo().equals("Muro")) {
+                        paineis[lin][col].setBackground(Color.GRAY);
+                    }
+                }
+            }
+        }
+    }
+
+    public void inicia() {
+        if (paineis != null) {
+            for (int lin = 0; lin < paineis.length; lin++) {
+                for (int col = 0; col < paineis[lin].length; col++) {
+                    if (paineis[lin][col].getTipo().equals("Inicial")) {
                         inicio[0] = lin;
                         inicio[1] = col;
-                        matriz[lin][col].setBackground(Color.GREEN);
-                    } else if (matriz[lin][col].getTipo().equals("Final")) {
+                        //matriz[lin][col].setBackground(Color.GREEN);
+                    } else if (paineis[lin][col].getTipo().equals("Final")) {
                         fim[0] = lin;
                         fim[1] = col;
-                        matriz[lin][col].setBackground(Color.RED);
-                    } else if (matriz[lin][col].getTipo().equals("Muro")) {
-                        matriz[lin][col].setBackground(Color.GRAY);
+                        //matriz[lin][col].setBackground(Color.RED);
+                    } else if (paineis[lin][col].getTipo().equals("Muro")) {
+                        //matriz[lin][col].setBackground(Color.GRAY);
                     }
                 }
             }
@@ -54,29 +73,29 @@ public class AStar {
             calcula(lin - 1, col, 10, comparador);                                                // Cima
             calcula(lin - 1, col + 1, 14, comparador);                                              // Diagonal superior direita
             percorrido += proximoElemento[3];
-            listaFechada.add(matriz[lin][col]);
+            listaFechada.add(paineis[lin][col]);
             proximo(proximoElemento[0], proximoElemento[1]);
         }
     }
 
     void calcula(int lin, int col, int custo, String aux) {
         if (analizaPassados(lin, col)) {                                             // Verifica se o elemento ja foi visitado
-            if (lin >= 0 && col >= 0 && lin < matriz.length && col < matriz[0].length && !matriz[lin][col].getTipo().equals("Muro")) {
-                matriz[lin][col].setG(percorrido + custo);
-                matriz[lin][col].setH(10 * (abs(col - fim[1]) + abs(lin - fim[0])));
-                resultF = matriz[lin][col].getG() + matriz[lin][col].getH();
-                matriz[lin][col].setF(resultF);
+            if (lin >= 0 && col >= 0 && lin < paineis.length && col < paineis[0].length && !paineis[lin][col].getTipo().equals("Muro")) {
+                paineis[lin][col].setG(percorrido + custo);
+                paineis[lin][col].setH(10 * (abs(col - fim[1]) + abs(lin - fim[0])));
+                resultF = paineis[lin][col].getG() + paineis[lin][col].getH();
+                paineis[lin][col].setF(resultF);
 
                 if (aux.equals("primeiro")) {
                     proximoElemento[0] = lin;
                     proximoElemento[1] = col;
-                    proximoElemento[2] = matriz[lin][col].getF();
+                    proximoElemento[2] = paineis[lin][col].getF();
                     proximoElemento[3] = custo;
                     this.comparador = "";
-                } else if (matriz[lin][col].getF() < proximoElemento[2]) {
+                } else if (paineis[lin][col].getF() < proximoElemento[2]) {
                     proximoElemento[0] = lin;
                     proximoElemento[1] = col;
-                    proximoElemento[2] = matriz[lin][col].getF();
+                    proximoElemento[2] = paineis[lin][col].getF();
                     proximoElemento[3] = custo;
                 }
             }

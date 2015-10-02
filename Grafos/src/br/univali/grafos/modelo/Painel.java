@@ -40,12 +40,16 @@ public class Painel extends JPanel {
             public void mousePressed(MouseEvent e) {
                 if (getBackground() == corAntiga) {
                     setBackground(Color.GREEN);
+                    setTipo("Inicial");
                 } else if (getBackground() == Color.GREEN) {
                     setBackground(Color.GRAY);
+                    setTipo("Muro");
                 } else if (getBackground() == Color.GRAY) {
                     setBackground(Color.RED);
+                    setTipo("Final");
                 } else if (getBackground() == Color.RED) {
                     setBackground(corAntiga);
+                    setTipo("-");
                 }
             }
         });

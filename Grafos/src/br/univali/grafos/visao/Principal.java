@@ -1,14 +1,17 @@
 /*
-    UNIVALI - Departamento de Ciência da Computação
-    Escrito pelos acadêmicos    Ailton Cardoso Júnior
-                                João Felipe Gonçalves
+ UNIVALI - Departamento de Ciência da Computação
+ Escrito pelos acadêmicos    Ailton Cardoso Júnior
+ João Felipe Gonçalves
 
-    Esta classe descreve a tela inicial do sistema.
-*/
-
+ Esta classe descreve a tela inicial do sistema.
+ */
 package br.univali.grafos.visao;
 
 import br.univali.grafos.principal.Grafo;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.UIManager;
+import javax.swing.UnsupportedLookAndFeelException;
 
 public class Principal extends javax.swing.JFrame {
 
@@ -128,10 +131,10 @@ public class Principal extends javax.swing.JFrame {
     }//GEN-LAST:event_button_DijkstraActionPerformed
 
     private void button_AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_AActionPerformed
-        TelaAEstrela telaAEstrela  = new TelaAEstrela(this, false);
+        TelaAEstrela telaAEstrela = new TelaAEstrela(this, false);
         telaAEstrela.setVisible(true); //Chama a dialog  
         telaAEstrela = null; //Deixa o garbage collector agir
-        
+
         //Teste teste = new Teste(this,false);
         //teste.setVisible(true);
     }//GEN-LAST:event_button_AActionPerformed
@@ -143,6 +146,17 @@ public class Principal extends javax.swing.JFrame {
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
+                try {
+                    UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+                } catch (ClassNotFoundException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (InstantiationException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (IllegalAccessException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                } catch (UnsupportedLookAndFeelException ex) {
+                    Logger.getLogger(Principal.class.getName()).log(Level.SEVERE, null, ex);
+                }
                 new Principal().setVisible(true);
             }
         });
