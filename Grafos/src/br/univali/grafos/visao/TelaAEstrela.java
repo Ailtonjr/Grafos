@@ -43,10 +43,12 @@ public class TelaAEstrela extends javax.swing.JDialog {
         painel_legenda = new javax.swing.JPanel();
         painel_vermelho = new javax.swing.JPanel();
         label_fim = new javax.swing.JLabel();
-        painel_verde = new javax.swing.JPanel();
+        painel_verde2 = new javax.swing.JPanel();
         label_inicio = new javax.swing.JLabel();
         painel_cinza = new javax.swing.JPanel();
         label_obstaculo = new javax.swing.JLabel();
+        painel_vermelho1 = new javax.swing.JPanel();
+        label_fim1 = new javax.swing.JLabel();
         botao_XML = new javax.swing.JButton();
         botao_iniciar = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
@@ -62,7 +64,7 @@ public class TelaAEstrela extends javax.swing.JDialog {
         painel_tabela.setBorder(javax.swing.BorderFactory.createTitledBorder(""));
         painel_tabela.setLayout(new java.awt.GridLayout(1, 10));
 
-        painel_legenda.setBorder(javax.swing.BorderFactory.createTitledBorder("Legenda"));
+        painel_legenda.setBorder(javax.swing.BorderFactory.createTitledBorder("Paleta"));
 
         painel_vermelho.setBackground(new java.awt.Color(255, 102, 102));
         painel_vermelho.setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -86,23 +88,23 @@ public class TelaAEstrela extends javax.swing.JDialog {
 
         label_fim.setText("Fim");
 
-        painel_verde.setBackground(new java.awt.Color(0, 153, 51));
-        painel_verde.setBorder(javax.swing.BorderFactory.createEtchedBorder());
-        painel_verde.setPreferredSize(new java.awt.Dimension(30, 30));
-        painel_verde.addMouseListener(new java.awt.event.MouseAdapter() {
+        painel_verde2.setBackground(new java.awt.Color(0, 153, 51));
+        painel_verde2.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        painel_verde2.setPreferredSize(new java.awt.Dimension(30, 30));
+        painel_verde2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 painel_verdeMouseClicked(evt);
             }
         });
 
-        javax.swing.GroupLayout painel_verdeLayout = new javax.swing.GroupLayout(painel_verde);
-        painel_verde.setLayout(painel_verdeLayout);
-        painel_verdeLayout.setHorizontalGroup(
-            painel_verdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout painel_verde2Layout = new javax.swing.GroupLayout(painel_verde2);
+        painel_verde2.setLayout(painel_verde2Layout);
+        painel_verde2Layout.setHorizontalGroup(
+            painel_verde2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 26, Short.MAX_VALUE)
         );
-        painel_verdeLayout.setVerticalGroup(
-            painel_verdeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        painel_verde2Layout.setVerticalGroup(
+            painel_verde2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 26, Short.MAX_VALUE)
         );
 
@@ -130,6 +132,27 @@ public class TelaAEstrela extends javax.swing.JDialog {
 
         label_obstaculo.setText("Obstáculo");
 
+        painel_vermelho1.setBorder(javax.swing.BorderFactory.createEtchedBorder());
+        painel_vermelho1.setPreferredSize(new java.awt.Dimension(30, 30));
+        painel_vermelho1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                painel_vermelho1MouseClicked(evt);
+            }
+        });
+
+        javax.swing.GroupLayout painel_vermelho1Layout = new javax.swing.GroupLayout(painel_vermelho1);
+        painel_vermelho1.setLayout(painel_vermelho1Layout);
+        painel_vermelho1Layout.setHorizontalGroup(
+            painel_vermelho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 26, Short.MAX_VALUE)
+        );
+        painel_vermelho1Layout.setVerticalGroup(
+            painel_vermelho1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 0, Short.MAX_VALUE)
+        );
+
+        label_fim1.setText("Normal");
+
         javax.swing.GroupLayout painel_legendaLayout = new javax.swing.GroupLayout(painel_legenda);
         painel_legenda.setLayout(painel_legendaLayout);
         painel_legendaLayout.setHorizontalGroup(
@@ -142,38 +165,44 @@ public class TelaAEstrela extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(label_obstaculo))
                     .addGroup(painel_legendaLayout.createSequentialGroup()
-                        .addComponent(painel_verde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(painel_verde2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(label_inicio))
                     .addGroup(painel_legendaLayout.createSequentialGroup()
                         .addComponent(painel_vermelho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(label_fim)))
+                        .addComponent(label_fim))
+                    .addGroup(painel_legendaLayout.createSequentialGroup()
+                        .addComponent(painel_vermelho1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(label_fim1)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         painel_legendaLayout.setVerticalGroup(
             painel_legendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(painel_legendaLayout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, painel_legendaLayout.createSequentialGroup()
                 .addContainerGap()
+                .addGroup(painel_legendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(painel_verde2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(painel_legendaLayout.createSequentialGroup()
+                        .addGap(7, 7, 7)
+                        .addComponent(label_inicio)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painel_legendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(painel_cinza, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(painel_legendaLayout.createSequentialGroup()
                         .addGap(8, 8, 8)
                         .addComponent(label_obstaculo)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(painel_legendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painel_legendaLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(painel_verde, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(painel_legendaLayout.createSequentialGroup()
-                        .addGap(14, 14, 14)
-                        .addComponent(label_inicio)))
-                .addGroup(painel_legendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(painel_legendaLayout.createSequentialGroup()
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(painel_vermelho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(painel_vermelho, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(painel_legendaLayout.createSequentialGroup()
                         .addGap(14, 14, 14)
                         .addComponent(label_fim)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(painel_legendaLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                    .addComponent(painel_vermelho1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(label_fim1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
@@ -323,13 +352,17 @@ public class TelaAEstrela extends javax.swing.JDialog {
         opcaoSelecionada = "Muro";
     }//GEN-LAST:event_painel_cinzaMouseClicked
 
-    private void painel_verdeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painel_verdeMouseClicked
-        opcaoSelecionada = "Inicial";
-    }//GEN-LAST:event_painel_verdeMouseClicked
-
     private void painel_vermelhoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painel_vermelhoMouseClicked
         opcaoSelecionada = "Final";
     }//GEN-LAST:event_painel_vermelhoMouseClicked
+
+    private void painel_vermelho1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painel_vermelho1MouseClicked
+        opcaoSelecionada = "-";
+    }//GEN-LAST:event_painel_vermelho1MouseClicked
+
+    private void painel_verdeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painel_verdeMouseClicked
+        opcaoSelecionada = "Inicial";
+    }//GEN-LAST:event_painel_verdeMouseClicked
 
     private void addPaineisTela(int linha, int coluna) {
         painel_tabela.removeAll();
@@ -394,6 +427,7 @@ public class TelaAEstrela extends javax.swing.JDialog {
     private javax.swing.JButton botao_iniciar;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label_fim;
+    private javax.swing.JLabel label_fim1;
     private javax.swing.JLabel label_inicio;
     private javax.swing.JLabel label_obstaculo;
     private javax.swing.JLabel label_x;
@@ -401,7 +435,10 @@ public class TelaAEstrela extends javax.swing.JDialog {
     private javax.swing.JPanel painel_legenda;
     private javax.swing.JPanel painel_tabela;
     private javax.swing.JPanel painel_verde;
+    private javax.swing.JPanel painel_verde1;
+    private javax.swing.JPanel painel_verde2;
     private javax.swing.JPanel painel_vermelho;
+    private javax.swing.JPanel painel_vermelho1;
     private javax.swing.JPanel painel_x;
     private javax.swing.JPanel painel_y;
     private javax.swing.JSpinner spinner_coluna;

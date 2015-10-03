@@ -61,24 +61,32 @@ public class AStar {
 
     void proximo(int lin, int col) {
         comparador = "primeiro";
+        boolean direita, diagInferiorDir, baixo, diagInferiorEsc, esquerda, diagSuperiorEsc, cima, diagSuperiorDir;
+
         if (lin == fim[0] && col == fim[1]) {
             System.out.println("Terminou em " + lin + " " + col);
         } else {
-            calcula(lin, col + 1, 10, comparador);                                                // Direita
-            calcula(lin + 1, col + 1, 14, comparador);                                              // Diagonal inferior direita
-            calcula(lin + 1, col, 10, comparador);                                                // Baixo
-            calcula(lin + 1, col - 1, 14, comparador);                                              // Diagonal inferior esquerda
-            calcula(lin, col - 1, 10, comparador);                                                // Esquerda
-            calcula(lin - 1, col - 1, 14, comparador);                                              // Diagonal superior esquerda
-            calcula(lin - 1, col, 10, comparador);                                                // Cima
-            calcula(lin - 1, col + 1, 14, comparador);                                              // Diagonal superior direita
-            percorrido += proximoElemento[3];
-            listaFechada.add(paineis[lin][col]);
-            proximo(proximoElemento[0], proximoElemento[1]);
+            direita = calcula(lin, col + 1, 10, comparador);                                                          // Direita
+            diagInferiorDir = calcula(lin + 1, col + 1, 14, comparador);                                              // Diagonal inferior direita
+            baixo = calcula(lin + 1, col, 10, comparador);                                                            // Baixo
+            diagInferiorEsc = calcula(lin + 1, col - 1, 14, comparador);                                              // Diagonal inferior esquerda
+            esquerda = calcula(lin, col - 1, 10, comparador);                                                         // Esquerda
+            diagSuperiorEsc = calcula(lin - 1, col - 1, 14, comparador);                                              // Diagonal superior esquerda
+            cima = calcula(lin - 1, col, 10, comparador);                                                             // Cima
+            diagSuperiorDir = calcula(lin - 1, col + 1, 14, comparador);                                              // Diagonal superior direita
+
+            if (!direita && !diagInferiorDir && !baixo && !diagInferiorEsc && !esquerda && !diagSuperiorEsc && !cima && !diagSuperiorDir) {
+                listaFechada = null;
+                proximo(lin, col);
+            }else{
+                percorrido += proximoElemento[3];
+                listaFechada.add(paineis[lin][col]);
+                proximo(proximoElemento[0], proximoElemento[1]);
+            }
         }
     }
 
-    void calcula(int lin, int col, int custo, String aux) {
+    boolean calcula(int lin, int col, int custo, String aux) {
         if (analizaPassados(lin, col)) {                                             // Verifica se o elemento ja foi visitado
             if (lin >= 0 && col >= 0 && lin < paineis.length && col < paineis[0].length && !paineis[lin][col].getTipo().equals("Muro")) {
                 paineis[lin][col].setG(percorrido + custo);
@@ -99,8 +107,9 @@ public class AStar {
                     proximoElemento[3] = custo;
                 }
             }
+            return true;
         } else {
-            //System.out.println("ja foi visitado");
+            return false;
         }
     }
 
