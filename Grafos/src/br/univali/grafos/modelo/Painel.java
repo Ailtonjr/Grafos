@@ -1,5 +1,6 @@
 package br.univali.grafos.modelo;
 
+import br.univali.grafos.visao.TelaAEstrela;
 import java.awt.Color;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -10,8 +11,6 @@ import javax.swing.JPanel;
 @SuppressWarnings("serial")
 public class Painel extends JPanel {
 
-    // private static final int PREF_W = 70;
-    // private static final int PREF_H = 90;
     private int lin;
     private int col;
     private Color corAntiga;
@@ -38,16 +37,16 @@ public class Painel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if (getBackground() == corAntiga) {
+                if ("Inicial" == TelaAEstrela.opcaoSelecionada) {
                     setBackground(Color.GREEN);
                     setTipo("Inicial");
-                } else if (getBackground() == Color.GREEN) {
+                } else if ("Muro" == TelaAEstrela.opcaoSelecionada) {
                     setBackground(Color.GRAY);
                     setTipo("Muro");
-                } else if (getBackground() == Color.GRAY) {
+                } else if ("Final" == TelaAEstrela.opcaoSelecionada) {
                     setBackground(Color.RED);
                     setTipo("Final");
-                } else if (getBackground() == Color.RED) {
+                } else if ("-" == TelaAEstrela.opcaoSelecionada) {
                     setBackground(corAntiga);
                     setTipo("-");
                 }
