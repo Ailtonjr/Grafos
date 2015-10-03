@@ -7,7 +7,10 @@
  */
 package br.univali.grafos.visao;
 
+import br.univali.grafos.modelo.LeitorXML_Aestrela;
+import br.univali.grafos.modelo.Planaridade;
 import br.univali.grafos.principal.Grafo;
+import br.univali.grafos.principal.LeitorXml;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -78,6 +81,11 @@ public class Principal extends javax.swing.JFrame {
         });
 
         button_Planaridade.setText("Planaridade");
+        button_Planaridade.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_PlanaridadeActionPerformed(evt);
+            }
+        });
 
         button_Coloracao.setText("Coloração");
         button_Coloracao.setPreferredSize(new java.awt.Dimension(60, 40));
@@ -134,10 +142,13 @@ public class Principal extends javax.swing.JFrame {
         TelaAEstrela telaAEstrela = new TelaAEstrela(this, false);
         telaAEstrela.setVisible(true); //Chama a dialog  
         telaAEstrela = null; //Deixa o garbage collector agir
-
-        //Teste teste = new Teste(this,false);
-        //teste.setVisible(true);
     }//GEN-LAST:event_button_AActionPerformed
+
+    private void button_PlanaridadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_PlanaridadeActionPerformed
+        LeitorXml leitorXml = new LeitorXml();
+        meuGrafo = (Grafo) leitorXml.grafoFromXML();
+        Planaridade planaridade = new Planaridade(meuGrafo);
+    }//GEN-LAST:event_button_PlanaridadeActionPerformed
 
     /**
      * @param args the command line arguments
