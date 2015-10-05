@@ -45,13 +45,9 @@ public class AStar {
                     if (paineis[lin][col].getTipo().equals("Inicial")) {
                         inicio[0] = lin;
                         inicio[1] = col;
-                        //matriz[lin][col].setBackground(Color.GREEN);
                     } else if (paineis[lin][col].getTipo().equals("Final")) {
                         fim[0] = lin;
                         fim[1] = col;
-                        //matriz[lin][col].setBackground(Color.RED);
-                    } else if (paineis[lin][col].getTipo().equals("Muro")) {
-                        //matriz[lin][col].setBackground(Color.GRAY);
                     }
                 }
             }
@@ -76,7 +72,7 @@ public class AStar {
             diagSuperiorDir = calcula(lin - 1, col + 1, 14, comparador);                                              // Diagonal superior direita
 
             if (!direita && !diagInferiorDir && !baixo && !diagInferiorEsc && !esquerda && !diagSuperiorEsc && !cima && !diagSuperiorDir) {
-                listaFechada = null;
+                listaFechada.removeAll(listaFechada);
                 proximo(lin, col);
             }else{
                 percorrido += proximoElemento[3];
@@ -106,8 +102,10 @@ public class AStar {
                     proximoElemento[2] = paineis[lin][col].getF();
                     proximoElemento[3] = custo;
                 }
+                return true;
+            }else{
+                return false;
             }
-            return true;
         } else {
             return false;
         }

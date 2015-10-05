@@ -37,16 +37,16 @@ public class Painel extends JPanel {
         addMouseListener(new MouseAdapter() {
             @Override
             public void mousePressed(MouseEvent e) {
-                if ("Inicial" == TelaAEstrela.opcaoSelecionada) {
+                if ("Inicial".equals(TelaAEstrela.opcaoSelecionada)) {
                     setBackground(Color.GREEN);
                     setTipo("Inicial");
-                } else if ("Muro" == TelaAEstrela.opcaoSelecionada) {
+                } else if ("Muro".equals(TelaAEstrela.opcaoSelecionada)) {
                     setBackground(Color.GRAY);
                     setTipo("Muro");
-                } else if ("Final" == TelaAEstrela.opcaoSelecionada) {
+                } else if ("Final".equals(TelaAEstrela.opcaoSelecionada)) {
                     setBackground(Color.RED);
                     setTipo("Final");
-                } else if ("-" == TelaAEstrela.opcaoSelecionada) {
+                } else if ("-".equals(TelaAEstrela.opcaoSelecionada)) {
                     setBackground(corAntiga);
                     setTipo("-");
                 }

@@ -434,8 +434,6 @@ public class TelaAEstrela extends javax.swing.JDialog {
     private javax.swing.JPanel painel_cinza;
     private javax.swing.JPanel painel_legenda;
     private javax.swing.JPanel painel_tabela;
-    private javax.swing.JPanel painel_verde;
-    private javax.swing.JPanel painel_verde1;
     private javax.swing.JPanel painel_verde2;
     private javax.swing.JPanel painel_vermelho;
     private javax.swing.JPanel painel_vermelho1;
