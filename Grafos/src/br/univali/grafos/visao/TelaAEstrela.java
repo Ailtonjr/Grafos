@@ -23,6 +23,7 @@ public class TelaAEstrela extends javax.swing.JDialog {
     private Grafo meuGrafo = null;
     public static String opcaoSelecionada = "-";
     AStar aStar;
+    Color teste;
     
 
     public TelaAEstrela(java.awt.Frame parent, boolean modal) {
@@ -97,6 +98,12 @@ public class TelaAEstrela extends javax.swing.JDialog {
         painel_verde2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 painel_verdeMouseClicked(evt);
+            }
+            public void mousePressed(java.awt.event.MouseEvent evt) {
+                painel_verde2MousePressed(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                painel_verde2MouseReleased(evt);
             }
         });
 
@@ -389,6 +396,15 @@ public class TelaAEstrela extends javax.swing.JDialog {
     private void painel_verdeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painel_verdeMouseClicked
         opcaoSelecionada = "Inicial";
     }//GEN-LAST:event_painel_verdeMouseClicked
+
+    private void painel_verde2MousePressed(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painel_verde2MousePressed
+       teste = painel_verde2.getBackground();
+        painel_verde2.setBackground(Color.GREEN);
+    }//GEN-LAST:event_painel_verde2MousePressed
+
+    private void painel_verde2MouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_painel_verde2MouseReleased
+        painel_verde2.setBackground(teste);
+    }//GEN-LAST:event_painel_verde2MouseReleased
 
     private void addPaineisTela(int linha, int coluna) {
         painel_tabela.removeAll();
