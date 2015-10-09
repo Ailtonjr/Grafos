@@ -24,35 +24,27 @@
     <DimensionLayout dim="0">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Group type="102" alignment="0" attributes="0">
-                      <Component id="label_caminho" min="-2" max="-2" attributes="0"/>
-                      <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                  </Group>
                   <Group type="102" alignment="1" attributes="0">
                       <Group type="103" groupAlignment="1" attributes="0">
-                          <Component id="textField_rotuloInicial" alignment="0" max="32767" attributes="0"/>
-                          <Group type="102" alignment="0" attributes="0">
-                              <Component id="label_conexo" max="32767" attributes="0"/>
-                              <EmptySpace min="-2" pref="84" max="-2" attributes="0"/>
-                          </Group>
-                          <Component id="jScrollPane1" alignment="0" pref="260" max="32767" attributes="0"/>
-                          <Component id="textField_rotuloBusca" alignment="1" max="32767" attributes="0"/>
+                          <Component id="jScrollPane1" alignment="0" max="32767" attributes="0"/>
                           <Group type="102" attributes="0">
-                              <EmptySpace min="0" pref="0" max="32767" attributes="0"/>
-                              <Group type="103" groupAlignment="1" attributes="0">
-                                  <Component id="buttonXML" alignment="1" min="-2" max="-2" attributes="0"/>
-                                  <Component id="buttonDijkstra" alignment="1" min="-2" pref="87" max="-2" attributes="0"/>
-                              </Group>
+                              <EmptySpace min="0" pref="349" max="32767" attributes="0"/>
+                              <Component id="buttonXML" min="-2" max="-2" attributes="0"/>
+                          </Group>
+                          <Group type="102" alignment="0" attributes="0">
+                              <Component id="textField_rotuloInicial" min="-2" pref="235" max="-2" attributes="0"/>
+                              <EmptySpace max="32767" attributes="0"/>
+                              <Component id="buttonDijkstra" min="-2" pref="87" max="-2" attributes="0"/>
                           </Group>
                       </Group>
-                      <EmptySpace min="-2" pref="70" max="-2" attributes="0"/>
+                      <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <Group type="102" attributes="0">
                       <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="label_rotuloBusca" alignment="0" min="-2" max="-2" attributes="0"/>
-                          <Component id="label_rotuloInicial" alignment="0" min="-2" max="-2" attributes="0"/>
+                          <Component id="label_rotuloInicial" min="-2" max="-2" attributes="0"/>
+                          <Component id="label_caminho" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <EmptySpace max="32767" attributes="0"/>
                   </Group>
@@ -67,21 +59,16 @@
               <Component id="buttonXML" min="-2" max="-2" attributes="0"/>
               <EmptySpace type="separate" min="-2" max="-2" attributes="0"/>
               <Component id="label_rotuloInicial" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-              <Component id="textField_rotuloInicial" min="-2" max="-2" attributes="0"/>
-              <EmptySpace max="-2" attributes="0"/>
-              <Component id="label_rotuloBusca" min="-2" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="9" max="-2" attributes="0"/>
-              <Component id="textField_rotuloBusca" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="buttonDijkstra" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="separate" max="-2" attributes="0"/>
+              <EmptySpace min="-2" pref="8" max="-2" attributes="0"/>
+              <Group type="103" groupAlignment="3" attributes="0">
+                  <Component id="textField_rotuloInicial" alignment="3" min="-2" max="-2" attributes="0"/>
+                  <Component id="buttonDijkstra" alignment="3" min="-2" max="-2" attributes="0"/>
+              </Group>
+              <EmptySpace min="-2" pref="30" max="-2" attributes="0"/>
               <Component id="label_caminho" min="-2" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="jScrollPane1" min="-2" max="-2" attributes="0"/>
-              <EmptySpace type="unrelated" max="-2" attributes="0"/>
-              <Component id="label_conexo" min="-2" pref="20" max="-2" attributes="0"/>
-              <EmptySpace min="-2" pref="32" max="-2" attributes="0"/>
+              <Component id="jScrollPane1" min="-2" pref="145" max="-2" attributes="0"/>
+              <EmptySpace pref="29" max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
@@ -103,16 +90,6 @@
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="buttonDijkstraActionPerformed"/>
       </Events>
-    </Component>
-    <Component class="javax.swing.JTextField" name="textField_rotuloBusca">
-      <Properties>
-        <Property name="enabled" type="boolean" value="false"/>
-      </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="label_rotuloBusca">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="Digite o rotulo a ser buscado"/>
-      </Properties>
     </Component>
     <Container class="javax.swing.JScrollPane" name="jScrollPane1">
       <AuxValues>
@@ -137,10 +114,8 @@
     </Container>
     <Component class="javax.swing.JLabel" name="label_caminho">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Caminho"/>
+        <Property name="text" type="java.lang.String" value="Resultado"/>
       </Properties>
-    </Component>
-    <Component class="javax.swing.JLabel" name="label_conexo">
     </Component>
     <Component class="javax.swing.JTextField" name="textField_rotuloInicial">
       <Properties>
@@ -149,7 +124,7 @@
     </Component>
     <Component class="javax.swing.JLabel" name="label_rotuloInicial">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Digite o rotulo Inicial"/>
+        <Property name="text" type="java.lang.String" value="Rotulo Inicial"/>
       </Properties>
     </Component>
   </SubComponents>

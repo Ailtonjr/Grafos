@@ -1,31 +1,30 @@
-
 package br.univali.grafos.modelo;
 
 import br.univali.grafos.principal.Arco;
 import br.univali.grafos.principal.Grafo;
 import br.univali.grafos.principal.Vertice;
-import java.util.ArrayList;
-import java.util.List;
-
+import br.univali.grafos.visao.TelaDijkstra;
 
 public class Dijkstra {
 
     int proximo = 0;
     double menor = 9223372036854775807L;
-    List<String> caminho = new ArrayList();
-
+    int inicial = 0;
     Grafo grafo;
 
-    public void busca(Grafo grafo, String rotuloInicial, String rotuloBusca) {
+    public void busca(Grafo grafo, String rotuloInicial) {
         this.grafo = grafo;
         for (Vertice vertice : grafo.vertices) {
             if (vertice.rotulo.equalsIgnoreCase(rotuloInicial)) {
-                int inicial = vertice.id;
-                grafo.vertices.get(inicial).estimativa = 0;
-                grafo.vertices.get(inicial).precedente = grafo.vertices.get(inicial).rotulo;
-                percorre(grafo.vertices.get(inicial));
+                inicial = vertice.id;
+                break;
             }
         }
+
+        grafo.vertices.get(inicial).estimativa = 0;
+        grafo.vertices.get(inicial).precedente = grafo.vertices.get(inicial).rotulo;
+        percorre(grafo.vertices.get(inicial));
+
 
         while (!verticeComplete()) {
             menor = 9223372036854775807L;
@@ -35,38 +34,7 @@ public class Dijkstra {
                 }
             }
         }
-        
-        
-        // Caminho
-        Vertice verticeAux = null;
-        double custo = 0;
-        for (Vertice vertice : grafo.vertices) {    // Procura a instancia do vertice de busca
-            if (vertice.rotulo.equalsIgnoreCase(rotuloBusca)) {
-                verticeAux = vertice;
-                custo = verticeAux.estimativa;
-                break;
-            }
-        }
-        
-        while(!verticeAux.rotulo.equalsIgnoreCase(rotuloInicial)) {
-            caminho.add(verticeAux.rotulo);
-            
-            for (int i = 0; i < grafo.vertices.size(); i++) {
-                if (grafo.vertices.get(i).rotulo.equalsIgnoreCase(verticeAux.precedente)) {
-                    verticeAux = grafo.vertices.get(i);
-                    break;
-                }
-            }
-        }
-        caminho.add(rotuloInicial);
-        
-        System.out.print("--------------------------------------------------------------------\nCaminho:\t");
-        
-        for (int i = caminho.size() - 1; i >= 0; i--) {
-            System.out.print(caminho.get(i) + "\t");
-        }
-        // Custo
-        System.out.println("\nCusto:\t" + custo);
+
     }
 
     private void percorre(Vertice verticeAtual) {
@@ -105,6 +73,8 @@ public class Dijkstra {
 
     boolean verticeComplete() {
         int cont = 0;
+        String result = "";
+
         for (Vertice vertice : grafo.vertices) {
             if (vertice.visitado) {
                 cont++;
@@ -112,18 +82,25 @@ public class Dijkstra {
         }
         if (cont == grafo.vertices.size()) {
             System.out.println("\n\n---------------------------- Resultados ----------------------------\n");
+            result += "Vertice:";
             System.out.print("Vertice:");
             for (Vertice vertice : grafo.vertices) {
                 System.out.print("\t " + vertice.rotulo);
+                result += "\t " + vertice.rotulo;
             }
+            result += "\n\nEstimativa:";
             System.out.print("\n\nEstimativa:");
             for (Vertice vertice : grafo.vertices) {
                 System.out.print("\t" + vertice.estimativa);
+                result += "\t" + vertice.estimativa;
             }
+            result += "\n\nPrecedente:";
             System.out.print("\n\nPrecedente:");
             for (Vertice vertice : grafo.vertices) {
                 System.out.print("\t " + vertice.precedente);
+                result += "\t " + vertice.precedente;
             }
+            TelaDijkstra.texto.setText(result);
             System.out.println("\n");
             return true;
         }
