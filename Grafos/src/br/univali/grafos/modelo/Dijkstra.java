@@ -11,7 +11,7 @@ public class Dijkstra {
     double menor = 9223372036854775807L;
     int inicial = 0;
     Grafo grafo;
-
+ 
     public void busca(Grafo grafo, String rotuloInicial) {
         this.grafo = grafo;
         for (Vertice vertice : grafo.vertices) {
