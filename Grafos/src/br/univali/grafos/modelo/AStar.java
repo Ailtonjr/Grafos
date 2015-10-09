@@ -5,6 +5,7 @@ import java.awt.Color;
 import static java.lang.Math.abs;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Stack;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 //teste
@@ -19,6 +20,9 @@ public class AStar {
     private int[] proximoElemento = new int[4];
     private Painel[][] paineis;
     private List<Painel> listaFechada;
+    private List<Buraco> listaFechadaBuracos = new ArrayList();
+    private List<Buraco> pilhaBuracos = new ArrayList();
+    
 
     public AStar(Painel[][] paineis) {
         this.paineis = paineis;
@@ -112,7 +116,8 @@ public class AStar {
                 } catch (InterruptedException ex) {
                     Logger.getLogger(AStar.class.getName()).log(Level.SEVERE, null, ex);
                 }
-
+                
+                analizaBuracos(lin, col);
                 proximo(proximoElemento[0], proximoElemento[1]);
             }
         }
@@ -166,5 +171,30 @@ public class AStar {
             }
         }
         return true;
+    }
+    
+    void analizaBuracos (int x, int y){
+        // Faltando impedir que va para uma posição da listaFechadaBuracos
+       
+        for (Buraco pilhaBuraco : pilhaBuracos) {
+            if (pilhaBuraco.getX() == x && pilhaBuraco.getY() == y) {
+                listaFechadaBuracos.add(pilhaBuraco);
+                pilhaBuracos.remove(pilhaBuraco);
+            }
+        }
+        
+        // Nao testar isso se achar um cara no foreach
+        if (x-1 >= 0 && y-1 >= 0) {
+            if (paineis[x][y-1].getTipo().equals("Muro") && paineis[x][y+1].getTipo().equals("Muro")) {     // Cima-baixo
+                pilhaBuracos.add(new Buraco(x, y));
+            } else if (paineis[x-1][y].getTipo().equals("Muro") && paineis[x+1][y-1].getTipo().equals("Muro")) {    // Lado-lado
+                pilhaBuracos.add(new Buraco(x, y));
+            } else if ((paineis[x+1][y-1].getTipo().equals("Muro") || paineis[x-1][y-1].getTipo().equals("Muro")) && paineis[x-1][y].getTipo().equals("Muro")) {    // Diagonal ancorado em baixo
+                pilhaBuracos.add(new Buraco(x, y));
+            } else if (paineis[x][y-1].getTipo().equals("Muro") && (paineis[x+1][y+1].getTipo().equals("Muro") || paineis[x-1][y+1].getTipo().equals("Muro"))) {    // Diagonal ancorado em cima
+                pilhaBuracos.add(new Buraco(x, y));
+            }
+        }  
+        
     }
 }
