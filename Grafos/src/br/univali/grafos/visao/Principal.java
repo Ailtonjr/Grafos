@@ -7,7 +7,6 @@
  */
 package br.univali.grafos.visao;
 
-import br.univali.grafos.modelo.LeitorXML_Aestrela;
 import br.univali.grafos.modelo.Planaridade;
 import br.univali.grafos.principal.Grafo;
 import br.univali.grafos.principal.LeitorXml;
