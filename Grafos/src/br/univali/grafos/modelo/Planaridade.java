@@ -14,8 +14,8 @@ public class Planaridade {
 
     public Planaridade(Grafo grafo) {
         if (grafo != null) {
-            int qtdVertices = grafo.vertices.size();
-            int qtdArestas = grafo.todosArcos.size();
+            int qtdVertices = grafo.vertices.size();                        
+            int qtdArestas = (grafo.todosArcos.size()/2);                       // Contorno do problema de direcionamento (GraphMax)
             int qtdFaces = qtdArestas - qtdVertices + 2;
 
             System.out.println("Arcos: " + qtdArestas + "\tVertices: " + qtdVertices);
@@ -27,24 +27,24 @@ public class Planaridade {
                     isTemCiclo(grafo);
                     if (!cicloTres) {   // Se nao houver ciclos de comprimento 3
                         if (qtdArestas <= 2 * qtdVertices - 4) {
-                            resultado = "O grafo E PLANAR!";
-                            System.out.println("O grafo E PLANAR!");
+                            resultado = "O grafo É PLANAR!";
+                            System.out.println("O grafo É PLANAR!");
                         } else {
-                            resultado = "O grafo NAO e planar!";
-                            System.out.println("O grafo NAO e planar**!");
+                            resultado = "O grafo NÃO é planar!";
+                            System.out.println("O grafo NÃO é planar**!");
                         }
                     } else {
-                        resultado = "O grafo E PLANAR!";
-                        System.out.println("O grafo E PLANAR!");
+                        resultado = "O grafo É PLANAR!";
+                        System.out.println("O grafo É PLANAR!");
                     }
 
                 } else {
-                    resultado = "O grafo NAO e planar!";
-                    System.out.println("O grafo NAO e planar!");
+                    resultado = "O grafo NÃO é planar!";
+                    System.out.println("O grafo NÃO é planar!");
                 }
             } else {    // So tem dois ou menos vertices, logo e planar.
-                resultado = "O grafo E PLANAR!";
-                System.out.println("O grafo E PLANAR");
+                resultado = "O grafo É PLANAR!";
+                System.out.println("O grafo É PLANAR");
             }
             JOptionPane.showMessageDialog(null, resultado);
         }
