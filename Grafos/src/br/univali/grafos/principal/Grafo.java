@@ -8,6 +8,7 @@ public class Grafo {
     
     public List<Vertice> vertices;
     public List<Arco> todosArcos;
+    public boolean dirigido;
     
     public Grafo(){
         this.vertices = new ArrayList<>();

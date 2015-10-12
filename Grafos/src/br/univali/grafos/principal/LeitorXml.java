@@ -81,6 +81,10 @@ public class LeitorXml {
                 DocumentBuilder dBuilder = dbFactory.newDocumentBuilder();
                 Document doc = dBuilder.parse(file);
                 doc.getDocumentElement().normalize();
+                NodeList nodesG = doc.getElementsByTagName("Grafo");
+                Element elementoG = (Element) nodesG.item(0);
+                grafo.dirigido = Boolean.parseBoolean(elementoG.getAttribute("dirigido"));
+                System.out.println(grafo.dirigido);
                 NodeList nodes = doc.getElementsByTagName("Vertice");
                 for (int i = 0; i < nodes.getLength(); i++) {
                     Node node = nodes.item(i);
