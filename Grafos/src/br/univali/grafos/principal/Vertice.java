@@ -8,6 +8,7 @@ import java.util.List;
 
 public class Vertice {
     public int id;
+    public int cor;
     public String rotulo;
     public boolean visitado = false;
     public List<Arco> arcos;
@@ -18,6 +19,11 @@ public class Vertice {
         arcos = new ArrayList<>();
         this.rotulo = rotulo;
         this.id = id;
+    }
+    
+    
+    public int getGrau() {
+        return arcos.size();
     }
     
 }

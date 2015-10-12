@@ -7,6 +7,7 @@
  */
 package br.univali.grafos.visao;
 
+import br.univali.grafos.modelo.Coloracao;
 import br.univali.grafos.modelo.Planaridade;
 import br.univali.grafos.principal.Grafo;
 import br.univali.grafos.principal.LeitorXml;
@@ -17,7 +18,7 @@ import javax.swing.UnsupportedLookAndFeelException;
 
 public class Principal extends javax.swing.JFrame {
 
-    Grafo meuGrafo = null;
+    Grafo grafo = null;
     Grafo backupGrafo = null;
 
     public Principal() {
@@ -88,6 +89,11 @@ public class Principal extends javax.swing.JFrame {
 
         button_Coloracao.setText("Coloração");
         button_Coloracao.setPreferredSize(new java.awt.Dimension(60, 40));
+        button_Coloracao.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_ColoracaoActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -145,9 +151,15 @@ public class Principal extends javax.swing.JFrame {
 
     private void button_PlanaridadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_PlanaridadeActionPerformed
         LeitorXml leitorXml = new LeitorXml();
-        meuGrafo = (Grafo) leitorXml.grafoFromXML();
-        Planaridade planaridade = new Planaridade(meuGrafo);
+        grafo = (Grafo) leitorXml.grafoFromXML();
+        Planaridade planaridade = new Planaridade(grafo);
     }//GEN-LAST:event_button_PlanaridadeActionPerformed
+
+    private void button_ColoracaoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_ColoracaoActionPerformed
+        LeitorXml leitorXml = new LeitorXml();
+        grafo = (Grafo) leitorXml.grafoFromXML();
+        Coloracao coloracao = new Coloracao(grafo);
+    }//GEN-LAST:event_button_ColoracaoActionPerformed
 
     /**
      * @param args the command line arguments

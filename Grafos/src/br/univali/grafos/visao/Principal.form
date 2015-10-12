@@ -117,6 +117,9 @@
           <Dimension value="[60, 40]"/>
         </Property>
       </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="button_ColoracaoActionPerformed"/>
+      </Events>
     </Component>
   </SubComponents>
 </Form>
