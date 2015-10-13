@@ -116,7 +116,7 @@
                           <Component id="label_obstaculo" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="painel_verde2" min="-2" max="-2" attributes="0"/>
+                          <Component id="painel_verde" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
                           <Component id="label_inicio" min="-2" max="-2" attributes="0"/>
                       </Group>
@@ -126,9 +126,9 @@
                           <Component id="label_fim" min="-2" max="-2" attributes="0"/>
                       </Group>
                       <Group type="102" alignment="0" attributes="0">
-                          <Component id="painel_vermelho1" min="-2" max="-2" attributes="0"/>
+                          <Component id="painel_normal" min="-2" max="-2" attributes="0"/>
                           <EmptySpace type="unrelated" max="-2" attributes="0"/>
-                          <Component id="label_fim1" min="-2" max="-2" attributes="0"/>
+                          <Component id="label_normal" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
@@ -140,7 +140,7 @@
               <Group type="102" alignment="1" attributes="0">
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
-                      <Component id="painel_verde2" alignment="0" min="-2" max="-2" attributes="0"/>
+                      <Component id="painel_verde" alignment="0" min="-2" max="-2" attributes="0"/>
                       <Group type="102" alignment="0" attributes="0">
                           <EmptySpace min="-2" pref="7" max="-2" attributes="0"/>
                           <Component id="label_inicio" min="-2" max="-2" attributes="0"/>
@@ -164,8 +164,8 @@
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" max="-2" attributes="0">
-                      <Component id="painel_vermelho1" max="32767" attributes="0"/>
-                      <Component id="label_fim1" min="-2" pref="30" max="-2" attributes="0"/>
+                      <Component id="painel_normal" max="32767" attributes="0"/>
+                      <Component id="label_normal" min="-2" pref="30" max="-2" attributes="0"/>
                   </Group>
                   <EmptySpace max="32767" attributes="0"/>
               </Group>
@@ -189,6 +189,8 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_vermelhoMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_vermelhoMousePressed"/>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_vermelhoMouseReleased"/>
           </Events>
 
           <Layout>
@@ -209,7 +211,7 @@
             <Property name="text" type="java.lang.String" value="Fim"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="painel_verde2">
+        <Container class="javax.swing.JPanel" name="painel_verde">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
               <Color blue="33" green="99" red="0" type="rgb"/>
@@ -225,8 +227,8 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_verdeMouseClicked"/>
-            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_verde2MousePressed"/>
-            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_verde2MouseReleased"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_verdeMousePressed"/>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_verdeMouseReleased"/>
           </Events>
 
           <Layout>
@@ -263,6 +265,8 @@
           </Properties>
           <Events>
             <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_cinzaMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_cinzaMousePressed"/>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_cinzaMouseReleased"/>
           </Events>
 
           <Layout>
@@ -283,7 +287,7 @@
             <Property name="text" type="java.lang.String" value="Obst&#xe1;culo"/>
           </Properties>
         </Component>
-        <Container class="javax.swing.JPanel" name="painel_vermelho1">
+        <Container class="javax.swing.JPanel" name="painel_normal">
           <Properties>
             <Property name="border" type="javax.swing.border.Border" editor="org.netbeans.modules.form.editors2.BorderEditor">
               <Border info="org.netbeans.modules.form.compat2.border.EtchedBorderInfo">
@@ -295,7 +299,9 @@
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_vermelho1MouseClicked"/>
+            <EventHandler event="mouseClicked" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_normalMouseClicked"/>
+            <EventHandler event="mousePressed" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_normalMousePressed"/>
+            <EventHandler event="mouseReleased" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="painel_normalMouseReleased"/>
           </Events>
 
           <Layout>
@@ -311,7 +317,7 @@
             </DimensionLayout>
           </Layout>
         </Container>
-        <Component class="javax.swing.JLabel" name="label_fim1">
+        <Component class="javax.swing.JLabel" name="label_normal">
           <Properties>
             <Property name="text" type="java.lang.String" value="Normal"/>
           </Properties>
