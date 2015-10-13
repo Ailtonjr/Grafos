@@ -14,7 +14,7 @@ public class Painel extends JPanel {
     private int lin;
     private int col;
     public static Color corAntiga;
-    JLabel label_F = new JLabel();
+    public JLabel label_F = new JLabel();
     JLabel label_G = new JLabel();
     JLabel label_H = new JLabel();
 

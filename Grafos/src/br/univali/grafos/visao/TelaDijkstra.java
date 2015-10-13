@@ -1,9 +1,9 @@
 
 package br.univali.grafos.visao;
 
-import br.univali.grafos.modelo.Dijkstra;
-import br.univali.grafos.principal.LeitorXml;
-import br.univali.grafos.principal.Grafo;
+import br.univali.grafos.controle.Dijkstra;
+import br.univali.grafos.controle.LeitorXml;
+import br.univali.grafos.modelo.Grafo;
 
 
 public class TelaDijkstra extends javax.swing.JDialog {

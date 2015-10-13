@@ -1,4 +1,4 @@
-package br.univali.grafos.principal;
+package br.univali.grafos.modelo;
 
 
 
@@ -20,7 +20,6 @@ public class Vertice {
         this.rotulo = rotulo;
         this.id = id;
     }
-    
     
     public int getGrau() {
         return arcos.size();

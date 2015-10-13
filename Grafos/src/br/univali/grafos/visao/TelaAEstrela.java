@@ -6,9 +6,9 @@ package br.univali.grafos.visao;
  * and open the template in the editor.
  */
 import br.univali.grafos.modelo.Painel;
-import br.univali.grafos.modelo.AStar;
-import br.univali.grafos.modelo.LeitorXML_Aestrela;
-import br.univali.grafos.principal.Grafo;
+import br.univali.grafos.controle.AStar;
+import br.univali.grafos.controle.LeitorXML_Aestrela;
+import br.univali.grafos.modelo.Grafo;
 import java.awt.Color;
 import java.awt.GridLayout;
 import javax.swing.JLabel;

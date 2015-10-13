@@ -1,4 +1,4 @@
-package br.univali.grafos.principal;
+package br.univali.grafos.modelo;
 
 
 public class Arco {
@@ -12,5 +12,4 @@ public class Arco {
         this.destino = destino;
         this.peso = peso;
     }
-    
 }

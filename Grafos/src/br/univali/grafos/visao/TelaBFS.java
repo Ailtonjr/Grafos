@@ -1,9 +1,9 @@
 
 package br.univali.grafos.visao;
 
-import br.univali.grafos.modelo.BFS;
-import br.univali.grafos.principal.LeitorXml;
-import br.univali.grafos.principal.Grafo;
+import br.univali.grafos.controle.BFS;
+import br.univali.grafos.controle.LeitorXml;
+import br.univali.grafos.modelo.Grafo;
 
 
 public class TelaBFS extends javax.swing.JDialog {

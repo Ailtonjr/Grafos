@@ -1,4 +1,4 @@
-package br.univali.grafos.principal;
+package br.univali.grafos.modelo;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -14,18 +14,17 @@ public class Grafo {
         this.todosArcos = new ArrayList<>();
     }
 
-    void adicionarVertice(String rotulo, int relId) {
+    public void adicionarVertice(String rotulo, int relId) {
         vertices.add(new Vertice(rotulo, relId));
     }
 
-    void adicionarArco(int idVertice1, int idVertice2, double peso) {
+    public void adicionarArco(int idVertice1, int idVertice2, double peso) {
         if (this.dirigido) {
             todosArcos.add(new Arco(vertices.get(idVertice1), vertices.get(idVertice2), peso));
             vertices.get(idVertice1).arcos.add(new Arco(vertices.get(idVertice1), vertices.get(idVertice2), peso));
         } else {
             todosArcos.add(new Arco(vertices.get(idVertice1), vertices.get(idVertice2), peso));
             vertices.get(idVertice1).arcos.add(new Arco(vertices.get(idVertice1), vertices.get(idVertice2), peso));
-            
             
             todosArcos.add(new Arco(vertices.get(idVertice2), vertices.get(idVertice1), peso));
             vertices.get(idVertice2).arcos.add(new Arco(vertices.get(idVertice2), vertices.get(idVertice1), peso));
@@ -39,5 +38,4 @@ public class Grafo {
             System.out.println("ID: " + vertice.id);
         }
     }
-
 }

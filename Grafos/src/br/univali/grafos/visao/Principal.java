@@ -7,10 +7,10 @@
  */
 package br.univali.grafos.visao;
 
-import br.univali.grafos.modelo.Coloracao;
-import br.univali.grafos.modelo.Planaridade;
-import br.univali.grafos.principal.Grafo;
-import br.univali.grafos.principal.LeitorXml;
+import br.univali.grafos.controle.Coloracao;
+import br.univali.grafos.controle.Planaridade;
+import br.univali.grafos.modelo.Grafo;
+import br.univali.grafos.controle.LeitorXml;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.UIManager;
@@ -127,26 +127,26 @@ public class Principal extends javax.swing.JFrame {
 
     private void button_BFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_BFSActionPerformed
         TelaBFS telaBfs = new TelaBFS(this, false);
-        telaBfs.setVisible(true); //Chama a dialog  
-        telaBfs = null; //Deixa o garbage collector agir  
+        telaBfs.setVisible(true);                                               //Chama a dialog  
+        telaBfs = null;                                                         //Deixa o garbage collector agir  
     }//GEN-LAST:event_button_BFSActionPerformed
 
     private void button_DFSActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_DFSActionPerformed
         TelaDFS telaDfs = new TelaDFS(this, false);
-        telaDfs.setVisible(true); //Chama a dialog  
-        telaDfs = null; //Deixa o garbage collector agir  
+        telaDfs.setVisible(true);                                               //Chama a dialog  
+        telaDfs = null;                                                         //Deixa o garbage collector agir  
     }//GEN-LAST:event_button_DFSActionPerformed
 
     private void button_DijkstraActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_DijkstraActionPerformed
         TelaDijkstra telaDijkstra = new TelaDijkstra(this, false);
-        telaDijkstra.setVisible(true); //Chama a dialog  
-        telaDijkstra = null; //Deixa o garbage collector agir
+        telaDijkstra.setVisible(true);                                          //Chama a dialog  
+        telaDijkstra = null;                                                    //Deixa o garbage collector agir
     }//GEN-LAST:event_button_DijkstraActionPerformed
 
     private void button_AActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_AActionPerformed
         TelaAEstrela telaAEstrela = new TelaAEstrela(this, false);
-        telaAEstrela.setVisible(true); //Chama a dialog  
-        telaAEstrela = null; //Deixa o garbage collector agir
+        telaAEstrela.setVisible(true);                                          //Chama a dialog  
+        telaAEstrela = null;                                                    //Deixa o garbage collector agir
     }//GEN-LAST:event_button_AActionPerformed
 
     private void button_PlanaridadeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_PlanaridadeActionPerformed

@@ -1,9 +1,9 @@
 
-package br.univali.grafos.modelo;
+package br.univali.grafos.controle;
 
-import br.univali.grafos.principal.Arco;
-import br.univali.grafos.principal.Grafo;
-import br.univali.grafos.principal.Vertice;
+import br.univali.grafos.modelo.Arco;
+import br.univali.grafos.modelo.Grafo;
+import br.univali.grafos.modelo.Vertice;
 import java.util.LinkedList;
 import java.util.Queue;
 

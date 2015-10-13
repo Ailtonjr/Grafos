@@ -1,6 +1,7 @@
-package br.univali.grafos.modelo;
+package br.univali.grafos.controle;
 
-import static br.univali.grafos.principal.LeitorXml.removeComentariosXML;
+import br.univali.grafos.modelo.Painel;
+import static br.univali.grafos.controle.LeitorXml.removeComentariosXML;
 import java.io.File;
 import java.util.ArrayList;
 import java.util.List;

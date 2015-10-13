@@ -1,8 +1,8 @@
-package br.univali.grafos.modelo;
+package br.univali.grafos.controle;
 
-import br.univali.grafos.principal.Arco;
-import br.univali.grafos.principal.Grafo;
-import br.univali.grafos.principal.Vertice;
+import br.univali.grafos.modelo.Arco;
+import br.univali.grafos.modelo.Grafo;
+import br.univali.grafos.modelo.Vertice;
 import javax.swing.JOptionPane;
 
 public class Planaridade {
@@ -23,9 +23,9 @@ public class Planaridade {
             System.out.println("Faces: " + qtdFaces);
 
             if (qtdVertices >= 3) {
-                if (qtdArestas <= (3 * qtdVertices) - 6) { // E <= 3*v - 6
+                if (qtdArestas <= (3 * qtdVertices) - 6) {                      // E <= 3*v - 6
                     isTemCiclo(grafo);
-                    if (!cicloTres) {   // Se nao houver ciclos de comprimento 3
+                    if (!cicloTres) {                                           // Se nao houver ciclos de comprimento 3
                         if (qtdArestas <= 2 * qtdVertices - 4) {
                             resultado = "O grafo É PLANAR!";
                             System.out.println("O grafo É PLANAR!");
@@ -70,7 +70,7 @@ public class Planaridade {
             if (cont < 3) {
                 cont++;
                 cicloDeTres(arco.destino);
-            } else if (arco.destino.id == idCiclo) {    // se contador == 3 e fecha um ciclo com o primeiro
+            } else if (arco.destino.id == idCiclo) {                            // se contador == 3 e fecha um ciclo com o primeiro
                 cicloTres = true;
                 return true;
             }

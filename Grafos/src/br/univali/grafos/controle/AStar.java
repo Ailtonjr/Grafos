@@ -1,5 +1,6 @@
-package br.univali.grafos.modelo;
+package br.univali.grafos.controle;
 
+import br.univali.grafos.modelo.Painel;
 import br.univali.grafos.visao.TelaAEstrela;
 import java.awt.Color;
 import static java.lang.Math.abs;
@@ -7,7 +8,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-//teste
 
 public class AStar {
 
@@ -87,14 +87,9 @@ public class AStar {
             diagSuperiorDir = calcula(lin - 1, col + 1, 14, comparador);                                                // Diagonal superior direita
 
             if (!direita && !diagInferiorDir && !baixo && !diagInferiorEsc && !esquerda && !diagSuperiorEsc && !cima && !diagSuperiorDir) {
-                /*for (Painel fechada : listaFechada) {
-                    fechada.setBackground(Painel.corAntiga);                                                            // Quando zerar a lista dos visitados retorna a cor padrao
-                }
-                listaFechada.removeAll(listaFechada);*/
                 listaFechada.get(listaFechada.size()-1).setBackground(Painel.corAntiga);
                 listaFechada.remove(listaFechada.size()-1);
                 listaFechada.add(0, paineis[lin][col]);
-                
                 proximo(lin, col);
             } else {
                 percorrido += proximoElemento[3];

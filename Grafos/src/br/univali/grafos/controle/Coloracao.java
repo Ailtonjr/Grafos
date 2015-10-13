@@ -1,8 +1,8 @@
-package br.univali.grafos.modelo;
+package br.univali.grafos.controle;
 
-import br.univali.grafos.principal.Arco;
-import br.univali.grafos.principal.Grafo;
-import br.univali.grafos.principal.Vertice;
+import br.univali.grafos.modelo.Arco;
+import br.univali.grafos.modelo.Grafo;
+import br.univali.grafos.modelo.Vertice;
 import javax.swing.JOptionPane;
 
 public class Coloracao {
@@ -18,11 +18,6 @@ public class Coloracao {
             }
             System.out.println("Inicial: " + prox.rotulo);
             prox.cor = 1;
-//            proxCor(prox.arcos.get(0).destino);
-//            proxCor(grafo.vertices.get(2));
-//            proxCor(grafo.vertices.get(3));
-//            proxCor(grafo.vertices.get(4));
-//            proxCor(grafo.vertices.get(5));
 
             for (int i = 0; i < grafo.vertices.size(); i++) {
                 int contMaior = 0;
