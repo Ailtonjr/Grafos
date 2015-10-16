@@ -11,9 +11,12 @@ public class Dijkstra {
     double menor = 9223372036854775807L;
     int inicial = 0;
     Grafo grafo;
+    String rotuloBusca;
+    StringBuilder caminho = new StringBuilder("");
  
-    public void busca(Grafo grafo, String rotuloInicial) {
+    public void busca(Grafo grafo, String rotuloInicial, String rotuloBusca) {
         this.grafo = grafo;
+        this.rotuloBusca = rotuloBusca;
         for (Vertice vertice : grafo.vertices) {
             if (vertice.rotulo.equalsIgnoreCase(rotuloInicial)) {
                 inicial = vertice.id;
@@ -88,23 +91,50 @@ public class Dijkstra {
                 System.out.print("\t " + vertice.rotulo);
                 result += "\t " + vertice.rotulo;
             }
-            result += "\n\nEstimativa:";
+            result += "\nEstimativa:";
             System.out.print("\n\nEstimativa:");
             for (Vertice vertice : grafo.vertices) {
                 System.out.print("\t" + vertice.estimativa);
                 result += "\t" + vertice.estimativa;
             }
-            result += "\n\nPrecedente:";
+            result += "\nPrecedente:";
             System.out.print("\n\nPrecedente:");
             for (Vertice vertice : grafo.vertices) {
                 System.out.print("\t " + vertice.precedente);
                 result += "\t " + vertice.precedente;
             }
-            TelaDijkstra.texto.setText(result);
+
             System.out.println("\n");
+            
+            
+            for (Vertice vertice : grafo.vertices) {
+                if (vertice.rotulo.equalsIgnoreCase(rotuloBusca)) {
+                    System.out.println("\nVertice buscado: " + rotuloBusca + "\tEstimativa: " + vertice.estimativa);
+                    result += "\n\nVertice buscado: " + rotuloBusca + "\tEstimativa: " + vertice.estimativa;
+                    caminho.insert(0, vertice.rotulo);
+                    caminho(vertice.precedente);
+                    
+                    System.out.println("\nCaminho: " + caminho);
+                    result += "\nCaminho: " + caminho;
+                    break;
+                }
+            }
+            TelaDijkstra.texto.setText(result);
             return true;
         }
         return false;
     }
-
+    
+    
+    public void caminho (String atual) {
+        for (Vertice vertice : grafo.vertices) {
+            if (vertice.rotulo.equals(atual) && !vertice.precedente.equals(atual)) {
+                caminho.insert(0, vertice.rotulo);
+                caminho(vertice.precedente);
+                break;
+            } else if (vertice.rotulo.equals(atual)) {
+                caminho.insert(0, atual);
+            }
+        }
+    }
 }
