@@ -11,13 +11,14 @@ import br.univali.grafos.controle.LeitorXML_Aestrela;
 import br.univali.grafos.modelo.Grafo;
 import java.awt.Color;
 import java.awt.GridLayout;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
 
 /**
  *
  * @author Ailton Cardoso Jr
  */
-public class TelaAEstrela extends javax.swing.JDialog {
+public class TelaAEstrela extends JFrame{
 
     private Painel[][] paineis;
     private Grafo meuGrafo = null;
@@ -27,7 +28,6 @@ public class TelaAEstrela extends javax.swing.JDialog {
     
 
     public TelaAEstrela(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
         initComponents();
 
     }

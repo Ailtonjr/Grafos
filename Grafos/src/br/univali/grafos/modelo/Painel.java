@@ -30,9 +30,11 @@ public class Painel extends JPanel {
         this.label_F = new JLabel();
         this.label_G = new JLabel();
         this.label_H = new JLabel();
+
         add(label_F);
         add(label_G);
         add(label_H);
+        label_F.setText("    ");
         setBorder(BorderFactory.createEtchedBorder());
         addMouseListener(new MouseAdapter() {
             @Override
