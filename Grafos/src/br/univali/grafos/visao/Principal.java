@@ -7,6 +7,7 @@
  */
 package br.univali.grafos.visao;
 
+import br.univali.grafos.controle.Caixeiro;
 import br.univali.grafos.controle.Coloracao;
 import br.univali.grafos.controle.Planaridade;
 import br.univali.grafos.modelo.Grafo;
@@ -41,6 +42,7 @@ public class Principal extends javax.swing.JFrame {
         button_A = new javax.swing.JButton();
         button_Planaridade = new javax.swing.JButton();
         button_Coloracao = new javax.swing.JButton();
+        button_Coloracao1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setTitle("Trabalho de Grafos");
@@ -95,6 +97,14 @@ public class Principal extends javax.swing.JFrame {
             }
         });
 
+        button_Coloracao1.setText("Caixeiro");
+        button_Coloracao1.setPreferredSize(new java.awt.Dimension(60, 40));
+        button_Coloracao1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                button_Coloracao1ActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -105,6 +115,7 @@ public class Principal extends javax.swing.JFrame {
             .addComponent(button_A, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(button_Planaridade, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
             .addComponent(button_Coloracao, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
+            .addComponent(button_Coloracao1, javax.swing.GroupLayout.PREFERRED_SIZE, 240, javax.swing.GroupLayout.PREFERRED_SIZE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -119,7 +130,9 @@ public class Principal extends javax.swing.JFrame {
                 .addGap(0, 0, 0)
                 .addComponent(button_Planaridade, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(0, 0, 0)
-                .addComponent(button_Coloracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(button_Coloracao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, 0)
+                .addComponent(button_Coloracao1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         pack();
@@ -161,6 +174,12 @@ public class Principal extends javax.swing.JFrame {
         Coloracao coloracao = new Coloracao(grafo);
     }//GEN-LAST:event_button_ColoracaoActionPerformed
 
+    private void button_Coloracao1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_button_Coloracao1ActionPerformed
+        LeitorXml leitorXml = new LeitorXml();
+        grafo = (Grafo) leitorXml.grafoFromXML();
+        Caixeiro caixeiro = new Caixeiro(grafo);
+    }//GEN-LAST:event_button_Coloracao1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -198,6 +217,7 @@ public class Principal extends javax.swing.JFrame {
     private javax.swing.JButton button_A;
     private javax.swing.JButton button_BFS;
     private javax.swing.JButton button_Coloracao;
+    private javax.swing.JButton button_Coloracao1;
     private javax.swing.JButton button_DFS;
     private javax.swing.JButton button_Dijkstra;
     private javax.swing.JButton button_Planaridade;

@@ -112,10 +112,10 @@ public class Dijkstra {
                     System.out.println("\nVertice buscado: " + rotuloBusca + "\tEstimativa: " + vertice.estimativa);
                     result += "\n\nVertice buscado: " + rotuloBusca + "\tEstimativa: " + vertice.estimativa;
                     caminho.insert(0, vertice.rotulo);
-                    caminho(vertice.precedente);
+                    //caminho(vertice.precedente);
                     
-                    System.out.println("\nCaminho: " + caminho);
-                    result += "\nCaminho: " + caminho;
+                    //System.out.println("\nCaminho: " + caminho);
+                    //result += "\nCaminho: " + caminho;
                     break;
                 }
             }
