@@ -7,6 +7,7 @@ import br.univali.grafos.modelo.Grafo;
 import br.univali.grafos.modelo.Vertice;
 import java.util.ArrayList;
 import java.util.List;
+import javax.swing.JOptionPane;
 
 public class Caixeiro {
 
@@ -14,32 +15,36 @@ public class Caixeiro {
     private Grafo grafo;
     private List<CicloCaixeiro> ciclo = new ArrayList();
     List<CaminhoAlternativo> lista = new ArrayList<>();
+    int cont = 0;
 
     public Caixeiro(Grafo grafo) {
         this.grafo = grafo;
         encontraMenor();
-        for (CicloCaixeiro c : ciclo) {
-            testaSubciclo(c.arco.origem, c.arco.peso , c.arco.destino);
-        }
-        menor = Double.MAX_VALUE;
-        CaminhoAlternativo menorAlternativo = null;
-        
-        for (CaminhoAlternativo l : lista) {
-            if(l.distanciaExcedente < menor){
-                menor = l.distanciaExcedente;
-                menorAlternativo = l;
+        while (cont < grafo.vertices.size()) {
+            lista.clear();
+            for (CicloCaixeiro c : ciclo) {
+                testaSubciclo(c.arco.origem, c.arco.peso, c.arco.destino);
+            }
+            menor = Double.MAX_VALUE;
+            CaminhoAlternativo menorAlternativo = null;
+
+            for (CaminhoAlternativo l : lista) {
+                if (l.distanciaExcedente < menor) {
+                    menor = l.distanciaExcedente;
+                    menorAlternativo = l;
+                }
+            }
+
+            for (int i = 0; i < ciclo.size(); i++) {
+                if (ciclo.get(i).vertice.rotulo.equalsIgnoreCase(menorAlternativo.arcoA.origem.rotulo)) {
+                    menorAlternativo.vertice.visitado = true;
+                    cont++;
+                    ciclo.get(i).arco = menorAlternativo.arcoA;
+                    ciclo.add(i + 1, new CicloCaixeiro(menorAlternativo.vertice, menorAlternativo.arcoB));
+                    break;
+                }
             }
         }
-        
-        for (int i = 0; i < ciclo.size(); i++) {
-            if(ciclo.get(i).vertice.rotulo.equalsIgnoreCase(menorAlternativo.arcoA.origem.rotulo)){
-                menorAlternativo.vertice.visitado = true;
-                ciclo.get(i).arco = menorAlternativo.arcoA;
-                ciclo.add(i+1 ,new CicloCaixeiro(menorAlternativo.vertice, menorAlternativo.arcoB));
-                break;
-            }
-        }
-        
         exibeCircuito();
     }
 
@@ -50,7 +55,7 @@ public class Caixeiro {
         double[] idaVolta = new double[2];
         double x = 0;
         double y = 0;
-        
+
         for (Vertice vertice : grafo.vertices) {
             for (Arco arco : vertice.arcos) {
                 x = arco.peso;
@@ -72,6 +77,7 @@ public class Caixeiro {
         }
         verticeInicial.visitado = true;
         verticeDestino.visitado = true;
+        cont = 2;
         ciclo.add(new CicloCaixeiro(verticeInicial, new Arco(verticeInicial, verticeDestino, idaVolta[0])));
         ciclo.add(new CicloCaixeiro(verticeDestino, new Arco(verticeDestino, verticeInicial, idaVolta[1])));
         System.out.println("Menor: " + menor + "\t" + verticeInicial.rotulo + verticeDestino.rotulo);
@@ -85,11 +91,21 @@ public class Caixeiro {
                 }
             }
         }
+        System.out.println("");
     }
 
     public void exibeCircuito() {
+        double total = 0;
+        String caminho = "";
         for (CicloCaixeiro c : ciclo) {
-            System.out.print(c.vertice.rotulo +"\t");
+            total += c.arco.peso;
+            caminho += (c.vertice.rotulo + " -> ");
+            System.out.print(c.vertice.rotulo + "\t");
         }
+        caminho += ciclo.get(0).vertice.rotulo + "\n\nTotal Percorrido: " + total;
+        System.out.println(ciclo.get(0).vertice.rotulo + "\n\nTotal Percorrido: " + total);
+        
+        JOptionPane.showMessageDialog(null, caminho);
+        
     }
 }
